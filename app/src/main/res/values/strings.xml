@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Missing</string>
+    <string name="login">Login</string>
+    <string name="phone">رقم الجوال</string>
+    <string name="password">كلمة المرور</string>
+    <string name="register">انشاء حساب</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="address">العنوان</string>
+    <string name="nationalnum">رقم الهوية</string>
+    <string name="register_new_account">انشاء حساب جديد</string>
+    <string name="checkNetworkConnection">تاكد من الاتصال بالانترنت</string>
+    <string name="validate_name">برجاء ادخال اسم المستخدم</string>
+    <string name="validate_national_num">برجاء ادخال رقم الهوية</string>
+    <string name="validate_address">برجاء ادخال العنوان</string>
+    <string name="validate_password">كلمة المرور ضعيفة</string>
+    <string name="validate_phone">برجاء ادخال رقم الهاتف</string>
+</resources>
