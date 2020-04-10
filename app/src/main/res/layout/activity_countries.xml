@@ -28,25 +28,53 @@
             android:textStyle="bold"
             android:fontFamily="@font/myfont"/>
     </RelativeLayout>
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/et_search_background"
-        android:drawableRight="@drawable/ic_search"
-        android:paddingRight="10dp"
-        android:hint="بحث"
-        android:fontFamily="@font/myfont"
-        android:textColorHint="@color/colorPrimary"
-        android:textStyle="normal"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/all_countries_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
-
-
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/et_search_background"
+                android:drawableRight="@drawable/ic_search"
+                android:paddingRight="10dp"
+                android:hint="بحث"
+                android:fontFamily="@font/myfont"
+                android:textColorHint="@color/colorPrimary"
+                android:textStyle="normal"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"/>
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/all_countries_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary"
+                android:text="اضافة"
+                android:textSize="20sp"
+                android:fontFamily="@font/myfont"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:onClick="AddMissingItem"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

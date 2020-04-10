@@ -1,20 +1,21 @@
-package com.example.missing.Countries;
+package com.example.missing.Categories;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class CountryModel {
+public class Category {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("title")
+    @SerializedName("name")
     @Expose
-    private String title;
-    @SerializedName("from_id")
+    private String name;
+    @SerializedName("img")
     @Expose
-    private Integer fromId;
+    private String img;
+    @SerializedName("approved")
+    @Expose
+    private Integer approved;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -30,20 +31,28 @@ public class CountryModel {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getFromId() {
-        return fromId;
+    public String getImg() {
+        return img;
     }
 
-    public void setFromId(Integer fromId) {
-        this.fromId = fromId;
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Integer getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Integer approved) {
+        this.approved = approved;
     }
 
     public String getCreatedAt() {
@@ -61,5 +70,4 @@ public class CountryModel {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 }

@@ -7,10 +7,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.example.missing.Data.Remote.GetDataService;
+import com.example.missing.Data.Remote.RetrofitClientInstance;
 import com.example.missing.R;
+import com.example.missing.Utilities.Utilities;
 
 import java.util.List;
 
@@ -20,11 +25,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountriesHolder> {
     List<CountryModel>countryModelList;
     Context context;
     CountriesActivity countriesActivity;
+    List<CityModel>citylist;
+    RecyclerView city_recycler;
+    Button btn_send,btn_cancel;
 
     public CountriesAdapter(List<CountryModel> countryModelList, Context context) {
         this.countryModelList = countryModelList;
@@ -45,28 +56,70 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
      holder.checkBox.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
-             CreateAlertDialog(countryModelList.get(position).getCityList());
+             CreateAlertDialog(countryModelList.get(position).getId());
          }
      });
 
      }
 
 
-    private void CreateAlertDialog(List<CityModel> cityList) {
+    private void CreateAlertDialog(int id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         final View view = countriesActivity.getLayoutInflater().inflate(R.layout.city_item, null);
-        RecyclerView city_recycler = view.findViewById(R.id.city_recycler);
-        CityAdapter cityAdapter = new CityAdapter(context,cityList);
-        city_recycler.setAdapter(cityAdapter);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
-        city_recycler.setLayoutManager(manager);
-        city_recycler.setHasFixedSize(true);
         builder.setView(view);
         AlertDialog dialog = builder.create();
         dialog.show();
         dialog.getWindow().setLayout(750, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        city_recycler = view.findViewById(R.id.city_recycler);
+        btn_send = view.findViewById(R.id.btn_send);
+        btn_cancel = view.findViewById(R.id.btn_cancel);
+        if(Utilities.isNetworkAvailable(context)){
+            GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+            Call<List<CityModel>> call = service.get_cities(id);
+            call.enqueue(new Callback<List<CityModel>>() {
+                @Override
+                public void onResponse(Call<List<CityModel>> call, Response<List<CityModel>> response) {
+                    if(response.isSuccessful()){
+                        citylist  = response.body();
+                        initrecycler();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<CityModel>> call, Throwable t) {
+
+                }
+            });
+        }
+        btn_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendData(id);
+                dialog.dismiss();
+            }
+        });
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               dialog.dismiss();
+            }
+        });
+
     }
+
+    private void sendData(int id) {
+        countriesActivity.sendgovernid(id);
+    }
+
+    private void initrecycler() {
+        CityAdapter cityAdapter = new CityAdapter(context,citylist);
+        city_recycler.setAdapter(cityAdapter);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
+        city_recycler.setLayoutManager(manager);
+        city_recycler.setHasFixedSize(true);
+    }
+
 
     @Override
     public int getItemCount() {
@@ -77,7 +130,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         @BindView(R.id.country_name)
         TextView txt_country_name;
         @BindView(R.id.checkbox)
-        CheckBox checkBox;
+        RadioButton checkBox;
         public CountriesHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
@@ -85,7 +138,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         }
 
         public void setData(CountryModel countryModel) {
-            txt_country_name.setText(countryModel.getName());
+            txt_country_name.setText(countryModel.getTitle());
         }
     }
 }

@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.missing.Categories.Category;
+import com.example.missing.Categories.CategoryActivity;
 import com.example.missing.Data.Local.MySharedPreference;
 import com.example.missing.Data.Remote.GetDataService;
 import com.example.missing.Data.Remote.Model.Authentication.User;
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(response.body().getSuccess()==1){
                                 mprefs.Create_Update_UserData(LoginActivity.this, response.body());
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                startActivity(new Intent(LoginActivity.this, CategoryActivity.class));
                                 finish();
                                 Toast.makeText(LoginActivity.this, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
                             }else if(response.body().getSuccess()== 0) {
@@ -80,4 +82,5 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+
 }

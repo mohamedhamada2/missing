@@ -15,4 +15,9 @@
     <string name="validate_address">برجاء ادخال العنوان</string>
     <string name="validate_password">كلمة المرور ضعيفة</string>
     <string name="validate_phone">برجاء ادخال رقم الهاتف</string>
+    <string name="categories">التصنيفات</string>
+    <string name="missing">مفقود</string>
+    <string name="existing">موجود</string>
+    <string name="missing_name">اسم المفقود</string>
+    <string name="choostype">اختار نوع العملية</string>
 </resources>

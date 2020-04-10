@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.missing.R;
@@ -19,10 +20,11 @@ import butterknife.ButterKnife;
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
     Context context;
     List<CityModel>cityModelList;
-
+    CountriesActivity countriesActivity;
     public CityAdapter(Context context, List<CityModel> cityModelList) {
         this.context = context;
         this.cityModelList = cityModelList;
+        countriesActivity = (CountriesActivity) context;
     }
 
     @NonNull
@@ -35,6 +37,12 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
     @Override
     public void onBindViewHolder(@NonNull CityHolder holder, int position) {
         holder.setData(cityModelList.get(position));
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               countriesActivity.sendcityid(cityModelList.get(position).getId());
+            }
+        });
     }
 
     @Override
@@ -46,14 +54,14 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
         @BindView(R.id.country_name)
         TextView txt_country_name;
         @BindView(R.id.checkbox)
-        CheckBox checkBox;
+        RadioButton checkBox;
         public CityHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
 
         public void setData(CityModel cityModel) {
-            txt_country_name.setText(cityModel.getCity_name());
+            txt_country_name.setText(cityModel.getTitle());
         }
     }
 }

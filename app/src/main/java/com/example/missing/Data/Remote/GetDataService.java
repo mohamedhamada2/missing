@@ -1,6 +1,10 @@
 package com.example.missing.Data.Remote;
 
 
+import com.example.missing.Categories.Category;
+import com.example.missing.Countries.CityModel;
+import com.example.missing.Countries.CountryModel;
+import com.example.missing.Data.Remote.Items.Item;
 import com.example.missing.Data.Remote.Model.Authentication.User;
 
 import java.util.List;
@@ -27,4 +31,20 @@ public interface GetDataService {
     @FormUrlEncoded
     @POST("api/login")
     Call<User>login_user(@Field("phone")String phone,@Field("password")String password);
+    @GET("api/categories")
+    Call<List<Category>>get_categories();
+    @GET("api/all_governs")
+    Call<List<CountryModel>>get_governs();
+    @FormUrlEncoded
+    @POST("api/get_city")
+    Call<List<CityModel>>get_cities(@Field("govern_id")int govern_id);
+    @Multipart
+    @POST("api/add_missing_found")
+    Call<Item>add_item(@Part("user_id") RequestBody user_id,
+                       @Part("type")RequestBody type,
+                       @Part("name")RequestBody name,
+                       @Part("category_id_fk")RequestBody category_id_fk,
+                       @Part("govern_id_fk")RequestBody govern_id_fk,
+                       @Part("city_id_fk")RequestBody city_id_fk,
+                       @Part MultipartBody.Part img);
 }

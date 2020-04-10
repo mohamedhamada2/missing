@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.missing.Categories.Category;
+import com.example.missing.Categories.CategoryActivity;
 import com.example.missing.Data.Local.MySharedPreference;
 import com.example.missing.Data.Remote.GetDataService;
 import com.example.missing.Data.Remote.Model.Authentication.User;
@@ -96,7 +98,7 @@ public class RegisterationActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         if(response.body().getSuccess()==1){
                             mprefs.Create_Update_UserData(RegisterationActivity.this, response.body());
-                            startActivity(new Intent(RegisterationActivity.this, MainActivity.class));
+                            startActivity(new Intent(RegisterationActivity.this, CategoryActivity.class));
                             finish();
                             Toast.makeText(RegisterationActivity.this, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
                         }else {
