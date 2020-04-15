@@ -1,7 +1,6 @@
 package com.example.missing.Countries;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -21,12 +20,11 @@ import android.widget.Toast;
 
 import com.example.missing.Data.Local.MySharedPreference;
 import com.example.missing.Data.Remote.GetDataService;
-import com.example.missing.Data.Remote.Items.Item;
+import com.example.missing.Data.Remote.Success.Success;
 import com.example.missing.Data.Remote.RetrofitClientInstance;
 import com.example.missing.R;
 import com.example.missing.Utilities.Utilities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CountriesActivity extends AppCompatActivity {
@@ -126,10 +124,10 @@ public class CountriesActivity extends AppCompatActivity {
         MultipartBody.Part photo = Utilities.getMultiPart(this, imagepath, "img");
         if(Utilities.isNetworkAvailable(this)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<Item> call = getDataService.add_item(rb_user_id,rb_type,rb_missing_name,rb_category_id,rb_govern_id,rb_city_id,photo);
-            call.enqueue(new Callback<Item>() {
+            Call<Success> call = getDataService.add_item(rb_user_id,rb_type,rb_missing_name,rb_category_id,rb_govern_id,rb_city_id,photo);
+            call.enqueue(new Callback<Success>() {
                 @Override
-                public void onResponse(Call<Item> call, Response<Item> response) {
+                public void onResponse(Call<Success> call, Response<Success> response) {
                     if(response.isSuccessful()){
                         if(response.body().getSuccess()==1){
                             progressBar.setVisibility(View.GONE);
@@ -139,7 +137,7 @@ public class CountriesActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Item> call, Throwable t) {
+                public void onFailure(Call<Success> call, Throwable t) {
 
                 }
             });

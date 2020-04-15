@@ -20,4 +20,6 @@
     <string name="existing">موجود</string>
     <string name="missing_name">اسم المفقود</string>
     <string name="choostype">اختار نوع العملية</string>
+    <string name="choosegovern">Govern</string>
+    <string name="city">City</string>
 </resources>

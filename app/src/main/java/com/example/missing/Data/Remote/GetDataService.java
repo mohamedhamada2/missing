@@ -4,7 +4,7 @@ package com.example.missing.Data.Remote;
 import com.example.missing.Categories.Category;
 import com.example.missing.Countries.CityModel;
 import com.example.missing.Countries.CountryModel;
-import com.example.missing.Data.Remote.Items.Item;
+import com.example.missing.Data.Remote.Success.Success;
 import com.example.missing.Data.Remote.Model.Authentication.User;
 
 import java.util.List;
@@ -40,11 +40,11 @@ public interface GetDataService {
     Call<List<CityModel>>get_cities(@Field("govern_id")int govern_id);
     @Multipart
     @POST("api/add_missing_found")
-    Call<Item>add_item(@Part("user_id") RequestBody user_id,
-                       @Part("type")RequestBody type,
-                       @Part("name")RequestBody name,
-                       @Part("category_id_fk")RequestBody category_id_fk,
-                       @Part("govern_id_fk")RequestBody govern_id_fk,
-                       @Part("city_id_fk")RequestBody city_id_fk,
-                       @Part MultipartBody.Part img);
+    Call<Success>add_item(@Part("user_id") RequestBody user_id,
+                          @Part("type")RequestBody type,
+                          @Part("name")RequestBody name,
+                          @Part("category_id_fk")RequestBody category_id_fk,
+                          @Part("govern_id_fk")RequestBody govern_id_fk,
+                          @Part("city_id_fk")RequestBody city_id_fk,
+                          @Part MultipartBody.Part img);
 }

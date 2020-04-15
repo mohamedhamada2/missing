@@ -1,9 +1,9 @@
-package com.example.missing.Data.Remote.Items;
+package com.example.missing.Data.Remote.Success;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Item {
+public class Success {
     @SerializedName("success")
     @Expose
     private Integer success;
