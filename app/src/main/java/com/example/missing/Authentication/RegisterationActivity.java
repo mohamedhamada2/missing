@@ -20,6 +20,7 @@ import com.example.missing.Data.Local.MySharedPreference;
 import com.example.missing.Data.Remote.GetDataService;
 import com.example.missing.Data.Remote.Model.Authentication.User;
 import com.example.missing.Data.Remote.RetrofitClientInstance;
+import com.example.missing.Home.Home;
 import com.example.missing.MainActivity;
 import com.example.missing.R;
 import com.example.missing.Utilities.Utilities;
@@ -83,7 +84,7 @@ public class RegisterationActivity extends AppCompatActivity {
             if(user_phone.length() != 11){
                 et_user_phone.setError(getResources().getString(R.string.validate_phone));
             }else {
-                et_password.setError(null);
+                et_user_phone.setError(null);
             }
         }
     }
@@ -98,7 +99,7 @@ public class RegisterationActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         if(response.body().getSuccess()==1){
                             mprefs.Create_Update_UserData(RegisterationActivity.this, response.body());
-                            startActivity(new Intent(RegisterationActivity.this, CategoryActivity.class));
+                            startActivity(new Intent(RegisterationActivity.this, Home.class));
                             finish();
                             Toast.makeText(RegisterationActivity.this, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
                         }else {

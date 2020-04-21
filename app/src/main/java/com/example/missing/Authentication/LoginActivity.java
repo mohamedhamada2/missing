@@ -20,6 +20,7 @@ import com.example.missing.Data.Local.MySharedPreference;
 import com.example.missing.Data.Remote.GetDataService;
 import com.example.missing.Data.Remote.Model.Authentication.User;
 import com.example.missing.Data.Remote.RetrofitClientInstance;
+import com.example.missing.Home.Home;
 import com.example.missing.MainActivity;
 import com.example.missing.R;
 import com.example.missing.Utilities.Utilities;
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(response.body().getSuccess()==1){
                                 mprefs.Create_Update_UserData(LoginActivity.this, response.body());
-                                startActivity(new Intent(LoginActivity.this, CategoryActivity.class));
+                                startActivity(new Intent(LoginActivity.this, Home.class));
                                 finish();
                                 Toast.makeText(LoginActivity.this, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
                             }else if(response.body().getSuccess()== 0) {

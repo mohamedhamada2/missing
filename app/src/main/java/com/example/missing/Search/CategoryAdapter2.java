@@ -24,10 +24,11 @@ import butterknife.ButterKnife;
 public class CategoryAdapter2 extends RecyclerView.Adapter<CategoryAdapter2.CategoryHolder> {
     List<Category> categoryList;
     Context context;
-    CategoryActivity categoryActivity;
+    SearchActivity searchActivity;
     public CategoryAdapter2(List<Category> categoryList, Context context) {
         this.categoryList = categoryList;
         this.context = context;
+        searchActivity = (SearchActivity) context;
     }
     @NonNull
     @Override
@@ -44,6 +45,7 @@ public class CategoryAdapter2 extends RecyclerView.Adapter<CategoryAdapter2.Cate
             public void onClick(View view) {
                 holder.category_img.setBackgroundColor(Color.parseColor("#C0C0C0"));
                 holder.category_name.setTextColor(Color.parseColor("#C0C0C0"));
+                searchActivity.sendData(categoryList.get(position).getId());
             }
         });
     }

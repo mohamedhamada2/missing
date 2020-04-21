@@ -4,6 +4,7 @@ package com.example.missing.Data.Remote;
 import com.example.missing.Categories.Category;
 import com.example.missing.Countries.CityModel;
 import com.example.missing.Countries.CountryModel;
+import com.example.missing.Data.Remote.Items.Item;
 import com.example.missing.Data.Remote.Success.Success;
 import com.example.missing.Data.Remote.Model.Authentication.User;
 
@@ -18,6 +19,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface GetDataService {
 
@@ -47,4 +49,17 @@ public interface GetDataService {
                           @Part("govern_id_fk")RequestBody govern_id_fk,
                           @Part("city_id_fk")RequestBody city_id_fk,
                           @Part MultipartBody.Part img);
+
+    @POST("api/search_by")
+    Call<List<Item>>get_all_items(@Query("category_id_fk") String category_id_fk,
+                                  @Query("name") String name,
+                                  @Query("type") String type,
+                                  @Query("govern_id_fk") String govern_id_fk,
+                                  @Query("city_id_fk") String city_id_fk);
+    @POST("api/add_comment")
+    Call<Success>addcomment(@Query("item_id_fk")String item_id_fk,
+                            @Query("type")String type,
+                            @Query("item_person_id_fk")String item_person_id_fk,
+                            @Query("comment_person_id_fk")String comment_person_id_fk,
+                            @Query("comment")String comment);
 }

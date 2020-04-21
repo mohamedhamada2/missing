@@ -11,6 +11,7 @@ import com.example.missing.Categories.Category;
 import com.example.missing.Categories.CategoryActivity;
 import com.example.missing.Data.Local.MySharedPreference;
 import com.example.missing.Data.Remote.Model.Authentication.User;
+import com.example.missing.Home.Home;
 import com.example.missing.MainActivity;
 import com.example.missing.R;
 
@@ -29,7 +30,7 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 //Create an Intent that will start the Menu-Activity.
                 if(user != null){
-                    Intent mainIntent = new Intent(Splash.this, CategoryActivity.class);
+                    Intent mainIntent = new Intent(Splash.this, Home.class);
                     startActivity(mainIntent);
                     finish();
                 }else {
