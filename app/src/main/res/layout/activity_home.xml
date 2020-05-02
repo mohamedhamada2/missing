@@ -27,6 +27,15 @@
             android:layout_centerInParent="true"
             android:textSize="18sp"
             android:text="@string/home"/>
+        <ImageView
+            android:id="@+id/menu_imgbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_menu"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:onClick="menu_imgbtn"/>
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"

@@ -13,7 +13,9 @@
     <string name="validate_national_num">برجاء ادخال رقم الهوية</string>
     <string name="validate_address">برجاء ادخال العنوان</string>
     <string name="validate_password">كلمة المرور ضعيفة</string>
-    <string name="validate_phone">برجاء ادخال رقم الهاتف</string>
+    <string name="validate_password2">من فضلك ادخل كلمة المرور</string>
+    <string name="validate_phone">رقم الهاتف غير صحيح</string>
+    <string name="validate_phone2">من فضلك ادخل رقم الهاتف </string>
     <string name="categories">Categories</string>
     <string name="missing">missing</string>
     <string name="existing">existing</string>
@@ -25,4 +27,5 @@
     <string name="home">Home</string>
     <string name="add_missing_or_existing">Add missing or existing item</string>
     <string name="searching_for_missing_or_existing">Searching for missing or existing</string>
+    <string name="logout">Logout</string>
 </resources>
