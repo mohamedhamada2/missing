@@ -84,7 +84,8 @@
                 android:textStyle="normal"
                 android:paddingEnd="10dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/regiser_btn_background" />
+                android:background="@drawable/regiser_btn_background"
+                android:inputType="number"/>
             <EditText
                 android:id="@+id/et_user_phone"
                 android:layout_width="280dp"
@@ -98,7 +99,8 @@
                 android:textStyle="normal"
                 android:paddingEnd="10dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/regiser_btn_background" />
+                android:background="@drawable/regiser_btn_background"
+                android:inputType="phone"/>
             <EditText
                 android:id="@+id/et_user_address"
                 android:layout_width="280dp"
