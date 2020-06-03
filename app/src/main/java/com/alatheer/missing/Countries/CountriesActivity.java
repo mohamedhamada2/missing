@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.alatheer.missing.Data.Local.MySharedPreference;
 import com.alatheer.missing.Data.Remote.GetDataService;
-import com.alatheer.missing.Data.Remote.Success.Success;
+import com.alatheer.missing.Data.Remote.Model.Success.Success;
 import com.alatheer.missing.Data.Remote.RetrofitClientInstance;
 import com.alatheer.missing.R;
 import com.alatheer.missing.Utilities.Utilities;

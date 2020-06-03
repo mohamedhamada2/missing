@@ -25,7 +25,7 @@ import com.alatheer.missing.Comments.AddComment;
 import com.alatheer.missing.Countries.CityModel;
 import com.alatheer.missing.Countries.CountryModel;
 import com.alatheer.missing.Data.Remote.GetDataService;
-import com.alatheer.missing.Data.Remote.Items.Item;
+import com.alatheer.missing.Data.Remote.Model.Items.Item;
 import com.alatheer.missing.Data.Remote.RetrofitClientInstance;
 import com.alatheer.missing.R;
 import com.alatheer.missing.Utilities.Utilities;

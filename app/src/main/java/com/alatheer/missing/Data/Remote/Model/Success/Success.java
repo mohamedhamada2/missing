@@ -1,4 +1,4 @@
-package com.alatheer.missing.Data.Remote.Success;
+package com.alatheer.missing.Data.Remote.Model.Success;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -15,4 +15,5 @@ public class Success {
     public void setSuccess(Integer success) {
         this.success = success;
     }
+
 }

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alatheer.missing.Data.Remote.Items.Item;
+import com.alatheer.missing.Data.Remote.Model.Items.Item;
 import com.alatheer.missing.R;
 import com.squareup.picasso.Picasso;
 
@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder> {
     List<Item>itemList;

@@ -4,10 +4,12 @@ package com.alatheer.missing.Data.Remote;
 import com.alatheer.missing.Categories.Category;
 import com.alatheer.missing.Countries.CityModel;
 import com.alatheer.missing.Countries.CountryModel;
-import com.alatheer.missing.Data.Remote.Comment.Comment;
-import com.alatheer.missing.Data.Remote.Items.Item;
-import com.alatheer.missing.Data.Remote.Success.Success;
+import com.alatheer.missing.Data.Remote.Model.Comment.Comment;
+import com.alatheer.missing.Data.Remote.Model.Items.Item;
 import com.alatheer.missing.Data.Remote.Model.Authentication.User;
+import com.alatheer.missing.Data.Remote.Model.*;
+import com.alatheer.missing.Data.Remote.Model.Success.Success;
+
 
 import java.util.List;
 
@@ -33,7 +35,7 @@ public interface GetDataService {
                              @Field("adress")String adress);
     @FormUrlEncoded
     @POST("api/login")
-    Call<User>login_user(@Field("phone")String phone,@Field("password")String password);
+    Call<User>login_user(@Field("phone")String phone, @Field("password")String password);
     @GET("api/categories")
     Call<List<Category>>get_categories();
     @GET("api/all_governs")

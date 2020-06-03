@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alatheer.missing.Data.Remote.Comment.Comment;
+import com.alatheer.missing.Data.Remote.Model.Comment.Comment;
 import com.alatheer.missing.R;
 
 import java.util.List;

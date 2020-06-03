@@ -1,4 +1,4 @@
-package com.alatheer.missing.Data.Remote.Comment;
+package com.alatheer.missing.Data.Remote.Model.Comment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -124,5 +124,6 @@ public class Comment {
 
     public void setCommentName(String commentName) {
         this.commentName = commentName;
+
     }
 }
