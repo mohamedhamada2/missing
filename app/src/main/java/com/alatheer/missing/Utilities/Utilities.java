@@ -4,8 +4,11 @@ import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -13,19 +16,37 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alatheer.missing.Authentication.LoginActivity;
+import com.alatheer.missing.Authentication.RegisterationActivity;
+import com.alatheer.missing.Data.Local.MySharedPreference;
+import com.alatheer.missing.Data.Remote.GetDataService;
+import com.alatheer.missing.Data.Remote.Model.Authentication.User;
+import com.alatheer.missing.Data.Remote.Model.Authentication.UserData;
+import com.alatheer.missing.Data.Remote.RetrofitClientInstance;
+import com.alatheer.missing.Home.Home;
 import com.alatheer.missing.R;
 
 import java.io.File;
 
+import androidx.appcompat.app.AlertDialog;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Utilities {
-
-
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -165,6 +186,7 @@ public class Utilities {
         File file =  getFileFromImagePath(getImagePath(context,uri));
         RequestBody requestBody = getRequestBodyImage(file);
         MultipartBody.Part part = MultipartBody.Part.createFormData(partName,file.getName(),requestBody);
+        Log.e("file",file.getName());
         return part;
 
     }
@@ -220,4 +242,65 @@ public class Utilities {
         return null;
     }
 
+    public static void CreateAlertDialog(Context context,String phone,int flag) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        final View view = inflater.inflate(R.layout.question_item, null);
+        EditText et_code = view.findViewById(R.id.et_code);
+        //txt_code.setText(code);
+        Button btn_ok = view.findViewById(R.id.btn_ok);
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String code = et_code.getText().toString();
+                MySharedPreference mprefs = MySharedPreference.getInstance();
+                if(!TextUtils.isEmpty(code)){
+                    GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+                    Call <User> call = getDataService.verify_code(phone,code);
+                    call.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            if(response.isSuccessful()){
+                                Log.e("success100","1");
+                                if(response.body().getSuccess() == 1 && response.body().getActivate()==1){
+                                    Log.e("success1","1");
+                                    if(flag == 1){
+                                        RegisterationActivity registerationActivity = (RegisterationActivity) context;
+                                        context.startActivity(new Intent(context, LoginActivity.class));
+                                        registerationActivity.finish();
+                                        mprefs.Create_Update_UserData(context,response.body());
+                                    }else if(flag ==2){
+                                        LoginActivity loginActivity = (LoginActivity) context;
+                                        context.startActivity(new Intent(context, Home.class));
+                                        loginActivity.finish();
+                                    }
+                                    Toast.makeText(context, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }else{
+                                    et_code.setError("الكود غير صحيح");
+                                    //dialog.dismiss();
+                                }
+                            }else {
+                                et_code.setError("الكود غير صحيح");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                              Log.e("failure",t.getMessage());
+                        }
+                    });
+                }else {
+                    et_code.setError("برجاء ادخال الكود الخاص بك");
+                }
+
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setLayout(750, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
 }

@@ -19,6 +19,7 @@
             android:layout_marginLeft="10dp"
             android:onClick="Back"/>
         <TextView
+            android:id="@+id/txt_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/myfont"
@@ -72,11 +73,11 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/regiser_btn_background" />
             <EditText
-                android:id="@+id/et_user_national_num"
+                android:id="@+id/et_email"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
-                android:drawableEnd="@drawable/nationalnum_img"
-                android:hint="@string/nationalnum"
+                android:drawableEnd="@drawable/ic_email"
+                android:hint="@string/email"
                 android:textColorHint="@color/colorPrimary"
                 android:textSize="16sp"
                 android:gravity="center"
@@ -85,7 +86,7 @@
                 android:paddingEnd="10dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/regiser_btn_background"
-                android:inputType="number"/>
+                android:inputType="textEmailAddress"/>
             <EditText
                 android:id="@+id/et_user_phone"
                 android:layout_width="280dp"
@@ -116,6 +117,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/regiser_btn_background" />
             <Button
+                android:id="@+id/btn_register"
                 android:onClick="Register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Missing</string>
+    <string name="login">iniciar sesión</string>
+    <string name="phone">Teléfono</string>
+    <string name="password">contraseña</string>
+    <string name="register">Registrarse</string>
+    <string name="username">nombre de usuario</string>
+    <string name="address">Dirección</string>
+    <string name="email">correo electrónico</string>
+    <string name="register_new_account">Registrar una cuenta nueva</string>
+    <string name="checkNetworkConnection">por favor revise su conexion a internet</string>
+    <string name="validate_name">por favor agrega tu nombre</string>
+    <string name="validate_email">por favor agregue su correo electrónico</string>
+    <string name="validate_address">por favor agregue su dirección</string>
+    <string name="validate_password_weak">la contraseña es semana</string>
+    <string name="validate_password_add">por favor agregue su contraseña</string>
+    <string name="validate_phone_incorrect">el teléfono es incorrecto</string>
+    <string name="validate_phone_add">por favor agregue el teléfono</string>
+    <string name="categories">Categorias</string>
+    <string name="missing">desaparecida</string>
+    <string name="existing">existente</string>
+    <string name="missing_name">nombre perdido</string>
+    <string name="choostype">اختار نوع العملية</string>
+    <string name="choosegovern">elegir gobernar</string>
+    <string name="city">elegir ciudad</string>
+    <string name="addcomment">Agregar comentario</string>
+    <string name="home">hogar</string>
+    <string name="add_missing_or_existing">Agregar elemento perdido o existente</string>
+    <string name="searching_for_missing_or_existing">Buscando desaparecidos o existentes</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="chooselanguage">elige lengua</string>
+    <string name="next">siguiente</string>
+    <string name="chooseimg">elegir imagen</string>
+    <string name="login_successfully">Inicia sesión con éxito</string>
+    <string name="check_your_data">Verifica tus datos</string>
+    <string name="enter_missing_nam">Ingrese el artículo que falta o que existe</string>
+    <string name="enter_missing_img">Agregue una imagen del artículo faltante o existente</string>
+    <string name="forgetpassword">Se te olvidó tu contraseña</string>
+    <string name="search">Buscar</string>
+    <string name="add">añadir</string>
+    <string name="sendcode">Enviar código</string>
+    <string name="code">Código</string>
+    <string name="newpassword">nueva contraseña</string>
+</resources>

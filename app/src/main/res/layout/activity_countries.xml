@@ -19,10 +19,11 @@
             android:background="@drawable/ic_back"
             android:onClick="Back"/>
         <TextView
+            android:id="@+id/txt_govern"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="اختر الدولة"
+            android:text="@string/choosegovern"
             android:textColor="@color/white"
             android:layout_centerInParent="true"
             android:textStyle="bold"
@@ -67,7 +68,7 @@
                 android:layout_width="280dp"
                 android:layout_height="40dp"
                 android:background="@color/colorPrimary"
-                android:text="اضافة"
+                android:text="@string/add"
                 android:textSize="20sp"
                 android:fontFamily="@font/myfont"
                 android:textStyle="bold"

@@ -46,7 +46,7 @@ public class AddComment extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     CommentAdapter commentAdapter;
     int item_id,user_id,type;
-    String img,name;
+    String img,name,city,govern,date;
     MySharedPreference mprefs;
     User user;
     int comment_user_id_fk;
@@ -71,6 +71,9 @@ public class AddComment extends AppCompatActivity {
         user_id = getIntent().getIntExtra("userId",0);
         name = getIntent().getStringExtra("name");
         img = getIntent().getStringExtra("img");
+        city = getIntent().getStringExtra("city");
+        govern = getIntent().getStringExtra("govern");
+        date = getIntent().getStringExtra("date");
     }
 
     private void get_all_comments() {
@@ -104,9 +107,9 @@ public class AddComment extends AppCompatActivity {
 
     private void setData() {
         category_name.setText(name);
-        Picasso.get().load("http://missing2.menustations.com/uploads/images/"+img).into(category_img);
-        location_name.setText("القصيم");
-        missing_date.setText("2020/4/19");
+        Picasso.get().load("https://mymissing.online/uploads/images/"+img).into(category_img);
+        location_name.setText(city+"-"+govern);
+        missing_date.setText(date);
     }
     @OnClick(R.id.img_add_comment)
     public void add_this_comment(View view) {

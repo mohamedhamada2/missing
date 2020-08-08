@@ -7,11 +7,14 @@ import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.paperdb.Paper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,9 +23,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alatheer.missing.Countries.CountriesActivity;
+import com.alatheer.missing.Helper.LocaleHelper;
 import com.alatheer.missing.R;
 import com.squareup.picasso.Picasso;
 
@@ -35,18 +40,36 @@ public class AddMissing extends AppCompatActivity {
     Button btn_choose_img;
     @BindView(R.id.btn_next_one)
     Button btn_next_one;
+    @BindView(R.id.txt_title)
+    TextView txt_title;
     private final String read_permission = Manifest.permission.READ_EXTERNAL_STORAGE;
     int IMG = 1;
     Uri filepath;
     String type;
     int category_id;
-    String missing_name;
+    String missing_name,language;
+    Context context;
+    Resources resources;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_missing);
         ButterKnife.bind(this);
+        Paper.init(this);
+         language = Paper.book().read("language");
+         context = LocaleHelper.setLocale(this,language);
+         resources = context.getResources();
+        updateview(language);
         getDataIntent();
+
+    }
+
+    private void updateview(String language) {
+        txt_title.setText(resources.getString(R.string.add_missing_or_existing));
+        et_missing_name.setHint(resources.getString(R.string.missing_name));
+        btn_choose_img.setText(resources.getString(R.string.chooseimg));
+        btn_next_one.setText(resources.getString(R.string.next));
+
 
     }
 
@@ -91,7 +114,7 @@ public class AddMissing extends AppCompatActivity {
             //profile_photo.setVisibility(View.GONE);
             Picasso.get().load(filepath).into(missing_img);
             //profile_photo.setVisibility(View.VISIBLE);
-            Toast.makeText(AddMissing.this, "image added successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(AddMissing.this, "image added successfully", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -106,12 +129,12 @@ public class AddMissing extends AppCompatActivity {
             Go_to_Next(missing_name,filepath,type,category_id);
         }else {
             if(TextUtils.isEmpty(missing_name)){
-                et_missing_name.setError("ادخل اسم المفقود");
+                et_missing_name.setError(resources.getString(R.string.enter_missing_nam));
             }else {
                 et_missing_name.setError(null);
             }
             if(filepath==null){
-                Toast.makeText(this, "من فضلك ادخل صورة المفقود", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,resources.getString(R.string.enter_missing_img), Toast.LENGTH_SHORT).show();
             }
         }
     }

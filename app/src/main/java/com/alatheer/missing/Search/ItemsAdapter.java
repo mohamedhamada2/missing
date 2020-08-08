@@ -41,7 +41,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
            @Override
            public void onClick(View view) {
                searchActivity.add_comment(itemList.get(position).getId(),itemList.get(position).getType(),itemList.get(position).getUserId()
-               ,itemList.get(position).getImg(),itemList.get(position).getName());
+               ,itemList.get(position).getImg(),itemList.get(position).getName(),itemList.get(position).getCityTitle(),itemList.get(position).getGovernTitle(),itemList.get(position).getCreatedAt());
            }
        });
     }
@@ -71,7 +71,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
 
         public void setData(Item item) {
             category_name.setText(item.getName());
-            Picasso.get().load("http://missing2.menustations.com/uploads/images/"+item.getImg()).into(category_img);
+            Picasso.get().load("https://mymissing.online/uploads/images/"+item.getImg()).into(category_img);
             location_name.setText(item.getCityTitle()+"-"+item.getGovernTitle());
             missing_date.setText(item.getCreatedAt());
             user_name.setText(item.getUName());

@@ -16,7 +16,7 @@ public class User {
     private String password;
     @SerializedName("national_num")
     @Expose
-    private String nationalNum;
+    private Object nationalNum;
     @SerializedName("adress")
     @Expose
     private String adress;
@@ -29,6 +29,18 @@ public class User {
     @SerializedName("updated_at")
     @Expose
     private Object updatedAt;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("activate")
+    @Expose
+    private Integer activate;
+    @SerializedName("code")
+    @Expose
+    private String code;
+    @SerializedName("message")
+    @Expose
+    private String message;
     @SerializedName("success")
     @Expose
     private Integer success;
@@ -65,11 +77,11 @@ public class User {
         this.password = password;
     }
 
-    public String getNationalNum() {
+    public Object getNationalNum() {
         return nationalNum;
     }
 
-    public void setNationalNum(String nationalNum) {
+    public void setNationalNum(Object nationalNum) {
         this.nationalNum = nationalNum;
     }
 
@@ -105,6 +117,38 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getActivate() {
+        return activate;
+    }
+
+    public void setActivate(Integer activate) {
+        this.activate = activate;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public Integer getSuccess() {
         return success;
     }
@@ -112,4 +156,5 @@ public class User {
     public void setSuccess(Integer success) {
         this.success = success;
     }
+
 }

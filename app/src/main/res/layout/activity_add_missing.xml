@@ -19,6 +19,7 @@
             android:layout_marginLeft="10dp"
             android:onClick="Back"/>
         <TextView
+            android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/myfont"
@@ -77,13 +78,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:background="@color/btn_color"
-                                android:text="اختار صورة"
+                                android:text="@string/chooseimg"
                                 android:textColor="@color/white"
                                 android:textStyle="bold"
                                 android:layout_weight="1.0"
                                 android:layout_marginTop="100dp"
                                 android:fontFamily="@font/myfont"
-                                android:textSize="20sp"
+                                android:textSize="16sp"
                                 android:onClick="ChooseImage"/>
                     </FrameLayout>
                 </androidx.cardview.widget.CardView>
@@ -97,7 +98,7 @@
                 android:fontFamily="@font/myfont"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:text="التالي"
+                android:text="@string/next"
                 android:onClick="DoNext"/>
         </LinearLayout>
     </ScrollView>

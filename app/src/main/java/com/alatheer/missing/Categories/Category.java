@@ -23,6 +23,18 @@ public class Category {
     @Expose
     private String updatedAt;
 
+    public boolean isSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
+    }
+
+    @SerializedName("select")
+    @Expose
+    private boolean select;
+
     public Integer getId() {
         return id;
     }

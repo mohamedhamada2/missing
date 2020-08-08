@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alatheer.missing.Categories.Category;
 import com.alatheer.missing.Comments.AddComment;
@@ -27,6 +31,7 @@ import com.alatheer.missing.Countries.CountryModel;
 import com.alatheer.missing.Data.Remote.GetDataService;
 import com.alatheer.missing.Data.Remote.Model.Items.Item;
 import com.alatheer.missing.Data.Remote.RetrofitClientInstance;
+import com.alatheer.missing.Helper.LocaleHelper;
 import com.alatheer.missing.R;
 import com.alatheer.missing.Utilities.Utilities;
 
@@ -48,6 +53,12 @@ public class SearchActivity extends AppCompatActivity {
     Button btn_missing;
     @BindView(R.id.btn_existing)
     Button btn_existing;
+    @BindView(R.id.txt_search)
+    TextView txt_search;
+    @BindView(R.id.txt_govern)
+    TextView txt_govern;
+    @BindView(R.id.txt_city)
+    TextView txt_city;
     CategoryAdapter2 categoryAdapter2;
     RecyclerView.LayoutManager layoutManager;
     List<Category> categoryList;
@@ -61,12 +72,22 @@ public class SearchActivity extends AppCompatActivity {
     int category_id ;
     List<Item>itemList;
     ItemsAdapter itemsAdapter;
+    String language;
     RecyclerView.LayoutManager itemlayoutManager;
+    Context context;
+    Resources resources;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
+        Paper.init(this);
+        language = Paper.book().read("language");
+        if(language == null){
+            Paper.book().write("language","ar");
+        }
+
+        updateview(language);
         countrynamesList = new ArrayList<>();
         citynamesList = new ArrayList<>();
         getCategories();
@@ -75,6 +96,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 govern_id = countryModelList.get(i).getId();
+                getcities();
                 TextView textView = (TextView) view;
                 textView.setTextColor(getResources().getColor(R.color.colorPrimary));
             }
@@ -84,21 +106,42 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-        getcities();
-        spinner_city_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                city_id = cityModelList.get(i).getId();
-                TextView textView = (TextView) view;
-                textView.setTextColor(getResources().getColor(R.color.colorPrimary));
-            }
+            spinner_city_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    try {
+                        city_id = cityModelList.get(i).getId();
+                        TextView textView = (TextView) view;
+                        textView.setTextColor(getResources().getColor(R.color.colorPrimary));
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+                    }catch (Exception r){
+                        TextView textView = (TextView) view;
+                        textView.setVisibility(View.INVISIBLE);
+                        citynamesList.clear();
+                        Toast.makeText(SearchActivity.this, "لا يوحد مدينة", Toast.LENGTH_SHORT).show();
+                    }
 
-            }
-        });
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+        }
+
+    private void updateview(String language) {
+        context = LocaleHelper.setLocale(this,language);
+        resources = context.getResources();
+        txt_search.setText(resources.getString(R.string.search));
+        txt_city.setText(resources.getString(R.string.city));
+        txt_govern.setText(resources.getString(R.string.choosegovern));
+        et_name.setHint(resources.getString(R.string.search));
+        btn_existing.setText(resources.getString(R.string.existing));
+        btn_missing.setText(resources.getString(R.string.missing));
     }
+
+
     private void getgoverns() {
         GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<List<CountryModel>> call = getDataService.get_governs();
@@ -130,11 +173,12 @@ public class SearchActivity extends AppCompatActivity {
                 public void onResponse(Call<List<CityModel>> call, Response<List<CityModel>> response) {
                     if(response.isSuccessful()){
                         cityModelList = response.body();
-                        for (CityModel cityModel : cityModelList){
-                            citynamesList.add(cityModel.getTitle());
-                        }
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SearchActivity.this,R.layout.spinner_item2,citynamesList);
-                        spinner_city_type.setAdapter(arrayAdapter);
+                        citynamesList.clear();
+                            for (CityModel cityModel : cityModelList){
+                                citynamesList.add(cityModel.getTitle());
+                            }
+                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SearchActivity.this,R.layout.spinner_item2,citynamesList);
+                            spinner_city_type.setAdapter(arrayAdapter);
                     }
                 }
 
@@ -245,13 +289,16 @@ public class SearchActivity extends AppCompatActivity {
         category_id = id;
     }
 
-    public void add_comment(Integer id, Integer type, Integer userId, String img, String name) {
+    public void add_comment(Integer id, Integer type, Integer userId, String img, String name,String city,String govern,String date) {
         Intent intent = new Intent(SearchActivity.this, AddComment.class);
         intent.putExtra("item_id",id);
         intent.putExtra("type",type);
         intent.putExtra("userId",userId);
         intent.putExtra("img",img);
         intent.putExtra("name",name);
+        intent.putExtra("city",city);
+        intent.putExtra("govern",govern);
+        intent.putExtra("date",date);
         startActivity(intent);
     }
 }

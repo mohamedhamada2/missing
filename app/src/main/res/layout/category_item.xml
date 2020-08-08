@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="90dp"
-    android:layout_height="90dp"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
     app:cardCornerRadius="14dp"
     android:layout_margin="10dp">
     <LinearLayout
@@ -14,8 +14,8 @@
         android:gravity="center">
         <ImageView
             android:id="@+id/category_img"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_horizontal"/>
         <TextView
             android:id="@+id/category_txt"
@@ -24,8 +24,9 @@
             android:fontFamily="@font/myfont"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:textColor="@color/grey"
+            android:textColor="@color/colorPrimary"
             android:text="ملابس"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

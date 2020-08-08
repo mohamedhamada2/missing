@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Missing</string>
+    <string name="login">لاگ ان کریں</string>
+    <string name="phone">فون</string>
+    <string name="password">پاسورڈ</string>
+    <string name="register">رجسٹر کریں</string>
+    <string name="username">صارف نام</string>
+    <string name="address">جگہ کا پتہ</string>
+    <string name="email">ای میل</string>
+    <string name="register_new_account">نیا اکاؤنٹ رجسٹر کریں</string>
+    <string name="checkNetworkConnection">براہ کرم انٹرنیٹ کنکشن چیک کریں</string>
+    <string name="validate_name">براہ کرم اپنا نام شامل کریں</string>
+    <string name="validate_email">براہ کرم اپنا ای میل شامل کریں</string>
+    <string name="validate_address">براہ کرم اپنا پتہ شامل کریں</string>
+    <string name="validate_password_weak">پاس ورڈ کمزور ہے</string>
+    <string name="validate_password_add">براہ کرم اپنا پاس ورڈ شامل کریں</string>
+    <string name="validate_phone_incorrect">فون غلط ہے</string>
+    <string name="validate_phone_add">براہ کرم اپنا فون شامل کریں</string>
+    <string name="categories">اقسام</string>
+    <string name="missing">لاپتہ</string>
+    <string name="existing">موجودہ</string>
+    <string name="missing_name">غائب نام</string>
+    <string name="choostype">اختار نوع العملية</string>
+    <string name="choosegovern">حکومت کا انتخاب کریں</string>
+    <string name="city">شہر کا انتخاب کریں</string>
+    <string name="addcomment">تبصرہ شامل کریں</string>
+    <string name="home">گھر</string>
+    <string name="add_missing_or_existing">گمشدہ یا موجود شے شامل کریں</string>
+    <string name="searching_for_missing_or_existing">لاپتہ یا موجود کی تلاش</string>
+    <string name="chooselanguage">زبان کا انتخاب کریں</string>
+    <string name="logout">لاگ آوٹ</string>
+    <string name="next">اگلے</string>
+    <string name="chooseimg">تصویر کا انتخاب کریں</string>
+    <string name="login_successfully">آپ کامیابی کے ساتھ لاگ ان کریں</string>
+    <string name="check_your_data">اپنا ڈیٹا چیک کریں</string>
+    <string name="enter_missing_nam">براہ کرم گمشدہ یا موجود آئٹم داخل کریں</string>
+    <string name="enter_missing_img">براہ کرم گمشدہ یا موجود شے کی تصویر شامل کریں</string>
+    <string name="forgetpassword">پاسورڈ بھول گے</string>
+    <string name="search">تلاش کریں</string>
+    <string name="add">شامل کریں</string>
+    <string name="sendcode">کوڈ بھیجیں</string>
+    <string name="code">کوڈ</string>
+    <string name="newpassword">نیا پاس ورڈ</string>
+</resources>
