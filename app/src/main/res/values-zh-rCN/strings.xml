@@ -12,7 +12,7 @@
     <string name="checkNetworkConnection">请检查您的互联网连接</string>
     <string name="validate_name">请加上你的名字</string>
     <string name="validate_email">请添加您的电子邮件</string>
-    <string name="validate_address">请添加您的地址</string>
+    <string name="validate_address">密码与确认密码不同</string>
     <string name="validate_password_weak">密码薄弱</string>
     <string name="validate_password_add">请添加您的密码</string>
     <string name="validate_phone_incorrect">电话不正确</string>
@@ -42,4 +42,13 @@
     <string name="sendcode">发送代码</string>
     <string name="code">码</string>
     <string name="newpassword">新密码</string>
+    <string name="legalletter">法定信件</string>
+    <string name="legalletter_details">我们是一个缺少的网站，每个人都应对他们在应用程序中的内容负责</string>
+    <string name="about">关于申请</string>
+    <string name="about_details">我们是缺少的应用程序，沙特的应用程序，可以帮助您从金钱和人，金，手表和手机中找到您的个人物品</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="ok">好</string>
+    <string name="notification">通知</string>
+    <string name="contact_message">请转到电子邮件以激活帐户</string>
+    <string name="reset_password_msg">请转到电子邮件并输入新密码</string>
 </resources>

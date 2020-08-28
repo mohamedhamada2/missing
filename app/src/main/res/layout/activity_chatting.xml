@@ -19,7 +19,8 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/ic_back"
             android:onClick="Back"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:contentDescription="back"/>
         <ImageView
             android:id="@+id/user_img"
             android:layout_width="50dp"
@@ -29,7 +30,8 @@
             android:layout_toRightOf="@+id/img_back"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:contentDescription="person"/>
         <TextView
             android:id="@+id/et_name"
             android:layout_width="wrap_content"

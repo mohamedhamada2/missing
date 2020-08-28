@@ -17,7 +17,8 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            android:onClick="Back"/>
+            android:onClick="Back"
+            android:contentDescription="back"/>
         <TextView
             android:id="@+id/txt_home"
             android:layout_width="wrap_content"
@@ -36,7 +37,8 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:onClick="menu_imgbtn"/>
+            android:onClick="menu_imgbtn"
+            android:contentDescription="menu"/>
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"

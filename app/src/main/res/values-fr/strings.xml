@@ -12,7 +12,7 @@
     <string name="checkNetworkConnection">S\'il vous plait, vérifiez votre connexion internet</string>
     <string name="validate_name">veuillez ajouter votre nom</string>
     <string name="validate_email">veuillez ajouter votre email</string>
-    <string name="validate_address">veuillez ajouter votre adresse</string>
+    <string name="validate_address">Le mot de passe est différent de Confirmer le mot de passe</string>
     <string name="validate_password_weak">le mot de passe est la semaine</string>
     <string name="validate_password_add">veuillez ajouter votre mot de passe</string>
     <string name="validate_phone_incorrect">le téléphone est incorrect</string>
@@ -42,5 +42,14 @@
     <string name="sendcode">Envoyer le code</string>
     <string name="code">Code</string>
     <string name="newpassword">nouveau mot de passe</string>
+    <string name="legalletter">Lettre légale</string>
+    <string name="legalletter_details">Nous sommes un site manquant dont chacun porte la responsabilité de ce qu\'il met dans l\'application</string>
+    <string name="about">à propos de l\'application</string>
+    <string name="about_details">Nous sommes une application manquante, une application saoudienne qui vous aide à trouver vos effets personnels de l\'argent et des personnes, de l\'or, des montres et des mobiles</string>
+    <string name="confirm_password">Confirmez le mot de passe</string>
+    <string name="ok">D\'accord</string>
+    <string name="notification">Notification</string>
+    <string name="contact_message">Veuillez accéder à l\'e-mail pour activer le compte</string>
+    <string name="reset_password_msg">Veuillez aller à l\'email et entrer le nouveau mot de passe</string>
 
 </resources>

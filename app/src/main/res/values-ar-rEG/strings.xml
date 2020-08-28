@@ -12,7 +12,7 @@
     <string name="checkNetworkConnection">تاكد من الاتصال بالانترنت</string>
     <string name="validate_name">برجاء ادخال اسم المستخدم</string>
     <string name="validate_email">برجاء ادخال البريد الالكتروني</string>
-    <string name="validate_address">برجاء ادخال العنوان</string>
+    <string name="validate_address">كلمة المرور مختلفة عن تاكيد كلمة المرور</string>
     <string name="validate_password_weak">كلمة المرور ضعيفة</string>
     <string name="validate_password_add">ادخل كلمة المرور</string>
     <string name="validate_phone_incorrect">رقم الهاتف غير صحيح</string>
@@ -42,4 +42,13 @@
     <string name="sendcode">ارسال كود</string>
     <string name="code">كود</string>
     <string name="newpassword">كلمة مرور جديدة</string>
+    <string name="legalletter">خطاب قانوني</string>
+    <string name="legalletter_details">نحن موقع مفقود ان كل شخص يتحمل مسؤولية مايضعه في التطبيق</string>
+    <string name="about">عن التطبيق</string>
+    <string name="about_details">نحن تطبيق مفقود تطبيق سعودي يساعدك في ايجاد متعلقاتك الشخصية من مال و اشخاص او دهب او ساعات و موبيلات</string>
+    <string name="confirm_password">تاكيد كلمة المرور</string>
+    <string name="ok">حسنا</string>
+    <string name="notification">الاشعارات</string>
+    <string name="contact_message">برجاء الذهاب للبريد الالكتروني لتفعيل الحساب</string>
+    <string name="reset_password_msg">برجاء الذهاب الي البريد الالكتروني و ادخال كلمة المرور الجديدة</string>
 </resources>

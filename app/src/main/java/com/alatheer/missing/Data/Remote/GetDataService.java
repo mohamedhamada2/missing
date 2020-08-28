@@ -4,12 +4,15 @@ package com.alatheer.missing.Data.Remote;
 import com.alatheer.missing.Categories.Category;
 import com.alatheer.missing.Countries.CityModel;
 import com.alatheer.missing.Countries.CountryModel;
+import com.alatheer.missing.Data.Remote.Model.About.About;
 import com.alatheer.missing.Data.Remote.Model.Authentication.UserData;
 import com.alatheer.missing.Data.Remote.Model.Comment.Comment;
 import com.alatheer.missing.Data.Remote.Model.Items.Item;
 import com.alatheer.missing.Data.Remote.Model.Authentication.User;
 import com.alatheer.missing.Data.Remote.Model.*;
+import com.alatheer.missing.Data.Remote.Model.RemoveToken.RemoveToken;
 import com.alatheer.missing.Data.Remote.Model.Success.Success;
+import com.alatheer.missing.Data.Remote.Model.Terms.Term;
 
 
 import java.util.List;
@@ -31,15 +34,14 @@ public interface GetDataService {
     @POST("api/register")
     Call<User> register_user(@Field("user_name") String user_name,
                              @Field("password") String password,
-                             @Field("email") String national_num,
-                             @Field("phone")String phone,
-                             @Field("adress")String adress);
+                             @Field("email") String email,
+                             @Field("phone")String phone);
     @FormUrlEncoded
     @POST("api/verifycode")
     Call<User>verify_code(@Field("phone")String Phone,@Field("code")String code);
     @FormUrlEncoded
     @POST("api/login")
-    Call<User>login_user(@Field("phone")String phone, @Field("password")String password);
+    Call<User>login_user(@Field("email")String email, @Field("password")String password,@Field("api_token")String api_token);
     @GET("api/categories")
     Call<List<Category>>get_categories();
     @GET("api/all_governs")
@@ -73,10 +75,16 @@ public interface GetDataService {
     @POST("api/get_comments")
     Call<List<Comment>>get_all_comments(@Query("item_id_fk")String item_id_fk);
     @FormUrlEncoded
-    @POST("api/sendcode")
+    @POST("api/sendcode2")
     Call<User>send_code(@Field("email")String email);
     @FormUrlEncoded
     @POST("api/resetpassword")
     Call<User>reset_password(@Field("email")String email,@Field("code")String code,@Field("password")String password);
-
+    @GET("api/terms")
+    Call<List<Term>>get_terms();
+    @GET("api/about")
+    Call<About>get_about();
+    @FormUrlEncoded
+    @POST("api/removeToken")
+    Call<RemoveToken>remove_token(@Field("id")String id);
 }

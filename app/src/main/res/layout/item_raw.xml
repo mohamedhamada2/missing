@@ -13,7 +13,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/user_image_bg"
-            android:src="@drawable/ic_person"/>
+            android:src="@drawable/ic_person"
+            android:contentDescription="person"/>
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
                         android:layout_height="24dp"
                         android:background="@drawable/calender_img"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:contentDescription="calender"/>
                     <TextView
                         android:id="@+id/missing_date"
                         android:layout_width="wrap_content"
@@ -92,7 +94,8 @@
                         android:layout_height="24dp"
                         android:background="@drawable/ic_location_on"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:contentDescription="location"/>
                     <TextView
                         android:id="@+id/location_name"
                         android:layout_width="wrap_content"
@@ -124,7 +127,8 @@
                 android:layout_gravity="left"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                android:layout_marginLeft="5dp">
+                android:layout_marginLeft="5dp"
+                android:contentDescription="image">
             </ImageView>
         </LinearLayout>
 

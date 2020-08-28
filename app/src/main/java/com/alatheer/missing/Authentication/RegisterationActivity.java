@@ -65,7 +65,7 @@ public class RegisterationActivity extends AppCompatActivity {
         et_password.setHint(resources.getString(R.string.password));
         et_email.setHint(resources.getString(R.string.email));
         et_user_phone.setHint(resources.getString(R.string.phone));
-        et_user_address.setHint(resources.getString(R.string.address));
+        et_user_address.setHint(resources.getString(R.string.confirm_password));
         txt_register.setText(resources.getString(R.string.register));
         btn_register.setText(resources.getString(R.string.register));
     }
@@ -83,7 +83,7 @@ public class RegisterationActivity extends AppCompatActivity {
         user_address = et_user_address.getText().toString();
         if(!TextUtils.isEmpty(user_name)&& user_password.length()>=6
         &&!TextUtils.isEmpty(user_email)&& user_phone.length() == 10
-        &&!TextUtils.isEmpty(user_address)){
+        &&user_address.equals(user_password)){
             RegisterUser(user_name,user_password,user_email,user_phone,user_address);
         }else {
             if(TextUtils.isEmpty(user_name)){
@@ -96,7 +96,7 @@ public class RegisterationActivity extends AppCompatActivity {
             }else {
                 et_email.setError(null);
             }
-            if(TextUtils.isEmpty(user_address)){
+            if(!user_address.equals(user_password)){
                 et_user_address.setError(resources.getString(R.string.validate_address));
             }else {
                 et_user_address.setError(null);
@@ -118,7 +118,7 @@ public class RegisterationActivity extends AppCompatActivity {
         Log.e("lllll","mmmmm");
         if(Utilities.isNetworkAvailable(RegisterationActivity.this)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<User> call = getDataService.register_user(user_name,user_password,user_email,user_phone,user_address);
+            Call<User> call = getDataService.register_user(user_name,user_password,user_email,user_phone);
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {

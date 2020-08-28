@@ -12,7 +12,7 @@
     <string name="checkNetworkConnection">por favor revise su conexion a internet</string>
     <string name="validate_name">por favor agrega tu nombre</string>
     <string name="validate_email">por favor agregue su correo electrónico</string>
-    <string name="validate_address">por favor agregue su dirección</string>
+    <string name="validate_address">La contraseña es diferente de Confirmar contraseña</string>
     <string name="validate_password_weak">la contraseña es semana</string>
     <string name="validate_password_add">por favor agregue su contraseña</string>
     <string name="validate_phone_incorrect">el teléfono es incorrecto</string>
@@ -42,4 +42,13 @@
     <string name="sendcode">Enviar código</string>
     <string name="code">Código</string>
     <string name="newpassword">nueva contraseña</string>
+    <string name="legalletter">Carta legal</string>
+    <string name="legalletter_details">Somos un sitio perdido en el que todos son responsables de lo que ingresan en la aplicación</string>
+    <string name="about">sobre la aplicación</string>
+    <string name="about_details">Somos una aplicación faltante, una aplicación saudí que le ayuda a encontrar sus pertenencias personales de dinero y personas, oro, relojes y móviles</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="ok">Okay</string>
+    <string name="notification">notificación</string>
+    <string name="contact_message">Vaya al correo electrónico para activar la cuenta</string>
+    <string name="reset_password_msg">Vaya al correo electrónico e ingrese la nueva contraseña</string>
 </resources>

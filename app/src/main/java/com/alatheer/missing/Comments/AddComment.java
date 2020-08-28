@@ -1,6 +1,7 @@
 package com.alatheer.missing.Comments;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -10,12 +11,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alatheer.missing.Categories.CategoryActivity;
 import com.alatheer.missing.Data.Local.MySharedPreference;
 import com.alatheer.missing.Data.Remote.Model.Comment.Comment;
 import com.alatheer.missing.Data.Remote.GetDataService;
@@ -52,6 +58,7 @@ public class AddComment extends AppCompatActivity {
     int comment_user_id_fk;
     String comment;
     List<Comment> commentsList;
+    boolean active;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +70,19 @@ public class AddComment extends AppCompatActivity {
         user = mprefs.Get_UserData(this);
         comment_user_id_fk = user.getId();
         setData();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mhandler,new IntentFilter("com.alatheer.missing_FCM-MESSAGE"));
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        active = false;
+    }
     private void getDataFromIntent() {
         item_id = getIntent().getIntExtra("item_id",0);
         type = getIntent().getIntExtra("type",0);
@@ -141,4 +159,14 @@ public class AddComment extends AppCompatActivity {
     public void Back(View view) {
         onBackPressed();
     }
+    private BroadcastReceiver mhandler = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String msg = intent.getStringExtra("message");
+            //message.setText(msg);
+            if(active == true){
+                Utilities.showNotificationInADialog(AddComment.this,msg);
+            }
+        }
+    };
 }

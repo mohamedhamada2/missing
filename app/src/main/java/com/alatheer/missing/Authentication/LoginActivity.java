@@ -1,5 +1,6 @@
 package com.alatheer.missing.Authentication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import butterknife.BindView;
@@ -31,6 +32,12 @@ import com.alatheer.missing.Helper.LocaleHelper;
 import com.alatheer.missing.Home.Home;
 import com.alatheer.missing.R;
 import com.alatheer.missing.Utilities.Utilities;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
+import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
     @BindView(R.id.et_phone)
@@ -50,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements PopupMenu.OnMenu
     MySharedPreference mprefs;
     Context context;
     Resources resources;
+    String firebase_token;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase,"ar"));
@@ -66,8 +74,19 @@ public class LoginActivity extends AppCompatActivity implements PopupMenu.OnMenu
         if(language == null){
             Paper.book().write("language","ar");
         }
-
         updateview(language);
+        try {
+            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                @Override
+                public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                    if(task.isSuccessful()){
+                        firebase_token = task.getResult().getToken();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateview(String language) {
@@ -113,7 +132,8 @@ public class LoginActivity extends AppCompatActivity implements PopupMenu.OnMenu
         if(Utilities.isNetworkAvailable(LoginActivity.this)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
             Log.e("hello",phone);
-            Call<User> call = getDataService.login_user(phone,password);
+            Log.e("hello",firebase_token);
+            Call<User> call = getDataService.login_user(phone,password,firebase_token);
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {

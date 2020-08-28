@@ -1,6 +1,7 @@
 package com.alatheer.missing.Categories;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -10,8 +11,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +49,7 @@ public class CategoryActivity extends AppCompatActivity {
     String type = "1";
     int category_id;
     String language;
+    boolean active;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,19 @@ public class CategoryActivity extends AppCompatActivity {
         language = Paper.book().read("language");
         updateview(language);
         getCategory();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mhandler,new IntentFilter("com.alatheer.missing_FCM-MESSAGE"));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        active = false;
     }
 
     private void updateview(String language) {
@@ -118,4 +135,14 @@ public class CategoryActivity extends AppCompatActivity {
             Toast.makeText(this, "اختار مفقود او موجود", Toast.LENGTH_SHORT).show();
         }
     }
+    private BroadcastReceiver mhandler = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String msg = intent.getStringExtra("message");
+            //message.setText(msg);
+            if(active == true){
+                Utilities.showNotificationInADialog(CategoryActivity.this,msg);
+            }
+        }
+    };
 }

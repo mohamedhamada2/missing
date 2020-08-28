@@ -1,6 +1,7 @@
 package com.alatheer.missing.Countries;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -13,7 +14,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alatheer.missing.Categories.AddMissing;
 import com.alatheer.missing.Data.Local.MySharedPreference;
 import com.alatheer.missing.Data.Remote.GetDataService;
 import com.alatheer.missing.Data.Remote.Model.Success.Success;
@@ -58,6 +63,7 @@ public class CountriesActivity extends AppCompatActivity {
     int user_id;
     Context context;
     Resources resources;
+    boolean active = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +76,19 @@ public class CountriesActivity extends AppCompatActivity {
         user_id = mySharedPreference.Get_UserData(this).getId();
         getDataIntent();
         get_governs();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mhandler,new IntentFilter("com.alatheer.missing_FCM-MESSAGE"));
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        active = false;
+    }
     private void updateview(String language) {
         context = LocaleHelper.setLocale(this,language);
         resources = context.getResources();
@@ -173,4 +190,15 @@ public class CountriesActivity extends AppCompatActivity {
         }
 
     }
+    private BroadcastReceiver mhandler = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String msg = intent.getStringExtra("message");
+            //message.setText(msg);
+            if(active == true){
+                Utilities.showNotificationInADialog(CountriesActivity.this,msg);
+            }
+
+        }
+    };
 }

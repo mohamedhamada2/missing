@@ -103,51 +103,20 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     private void CreatealertDialog(String email) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.reset_password_item, null);
-        EditText et_code = view.findViewById(R.id.et_code);
-        EditText et_password = view.findViewById(R.id.et_new_password);
+        TextView txt_msg = view.findViewById(R.id.txt_message);
         //txt_code.setText(code);
         Button btn_ok = view.findViewById(R.id.btn_ok);
+        txt_msg.setText(resources.getString(R.string.reset_password_msg));
+        btn_ok.setText(resources.getString(R.string.ok));
         builder.setView(view);
         AlertDialog dialog = builder.create();
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = et_code.getText().toString();
-                String password = et_password.getText().toString();
-                MySharedPreference mprefs = MySharedPreference.getInstance();
-                if (!TextUtils.isEmpty(code)) {
-                    GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-                    Call<User> call = getDataService.reset_password(email, code,password);
-                    call.enqueue(new Callback<User>() {
-                        @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            if (response.isSuccessful()) {
-                                if (response.body().getSuccess() == 1) {
-                                    Log.e("success1", "1");
-                                    //Toast.makeText(context, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(ForgetPasswordActivity.this,LoginActivity.class));
-                                    dialog.dismiss();
-                                } else {
-                                    et_code.setError("الكود غير صحيح");
-                                    //dialog.dismiss();
-                                }
-                            } else {
-                                et_code.setError("الكود غير صحيح");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Log.e("failure", t.getMessage());
-                        }
-                    });
-                } else {
-                    et_code.setError("برجاء ادخال الكود الخاص بك");
-                }
-
+                startActivity(new Intent(ForgetPasswordActivity.this,LoginActivity.class));
+                finish();
             }
         });
         dialog.show();

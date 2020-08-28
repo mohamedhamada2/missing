@@ -12,7 +12,7 @@
     <string name="checkNetworkConnection">براہ کرم انٹرنیٹ کنکشن چیک کریں</string>
     <string name="validate_name">براہ کرم اپنا نام شامل کریں</string>
     <string name="validate_email">براہ کرم اپنا ای میل شامل کریں</string>
-    <string name="validate_address">براہ کرم اپنا پتہ شامل کریں</string>
+    <string name="validate_address">تصدیق شدہ پاس ورڈ سے پاس ورڈ مختلف ہے</string>
     <string name="validate_password_weak">پاس ورڈ کمزور ہے</string>
     <string name="validate_password_add">براہ کرم اپنا پاس ورڈ شامل کریں</string>
     <string name="validate_phone_incorrect">فون غلط ہے</string>
@@ -42,4 +42,13 @@
     <string name="sendcode">کوڈ بھیجیں</string>
     <string name="code">کوڈ</string>
     <string name="newpassword">نیا پاس ورڈ</string>
+    <string name="legalletter">قانونی خط</string>
+    <string name="legalletter_details">ہم ایک لاپتہ سائٹ ہیں جو ہر ایک نے اس درخواست کی ذمہ داری قبول کی ہے</string>
+    <string name="about">aدرخواست کے بارے میں</string>
+    <string name="about_details">ہم ایک لاپتہ ایپلی کیشن ، ایک سعودی ایپلی کیشن ہیں جو آپ کو پیسوں اور لوگوں ، سونے ، گھڑیاں اور موبائلوں سے اپنا ذاتی سامان تلاش کرنے میں مدد فراہم کرتی ہے</string>
+    <string name="confirm_password">پاس ورڈ کی تصدیق کریں</string>
+    <string name="ok">ٹھیک ہے</string>
+    <string name="notification">اطلاع</string>
+    <string name="contact_message">براہ کرم اکاؤنٹ کو چالو کرنے کے لئے ای میل پر جائیں</string>
+    <string name="reset_password_msg">براہ کرم ای میل پر جائیں اور نیا پاس ورڈ درج کریں</string>
 </resources>

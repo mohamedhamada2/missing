@@ -17,7 +17,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/ic_back"
-                android:onClick="Back"/>
+                android:onClick="Back"
+                android:contentDescription="back"/>
             <TextView
                 android:id="@+id/txt_search"
                 android:layout_width="wrap_content"

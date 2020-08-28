@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -11,8 +12,10 @@ import io.paperdb.Paper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -28,7 +31,9 @@ import android.widget.Toast;
 
 import com.alatheer.missing.Countries.CountriesActivity;
 import com.alatheer.missing.Helper.LocaleHelper;
+import com.alatheer.missing.Home.Home;
 import com.alatheer.missing.R;
+import com.alatheer.missing.Utilities.Utilities;
 import com.squareup.picasso.Picasso;
 
 public class AddMissing extends AppCompatActivity {
@@ -42,6 +47,7 @@ public class AddMissing extends AppCompatActivity {
     Button btn_next_one;
     @BindView(R.id.txt_title)
     TextView txt_title;
+    static boolean active = false;
     private final String read_permission = Manifest.permission.READ_EXTERNAL_STORAGE;
     int IMG = 1;
     Uri filepath;
@@ -61,7 +67,19 @@ public class AddMissing extends AppCompatActivity {
          resources = context.getResources();
         updateview(language);
         getDataIntent();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mhandler,new IntentFilter("com.alatheer.missing_FCM-MESSAGE"));
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        active = false;
     }
 
     private void updateview(String language) {
@@ -151,4 +169,16 @@ public class AddMissing extends AppCompatActivity {
     public void Back(View view) {
         onBackPressed();
     }
+    private BroadcastReceiver mhandler = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String msg = intent.getStringExtra("message");
+            //message.setText(msg);
+
+                //show dialog
+            if(active == true ){
+                Utilities.showNotificationInADialog(AddMissing.this,msg);
+            }
+        }
+    };
 }

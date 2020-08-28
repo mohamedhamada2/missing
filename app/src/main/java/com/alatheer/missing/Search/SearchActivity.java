@@ -1,6 +1,7 @@
 package com.alatheer.missing.Search;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -11,8 +12,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +30,7 @@ import android.widget.Toast;
 import com.alatheer.missing.Categories.Category;
 import com.alatheer.missing.Comments.AddComment;
 import com.alatheer.missing.Countries.CityModel;
+import com.alatheer.missing.Countries.CountriesActivity;
 import com.alatheer.missing.Countries.CountryModel;
 import com.alatheer.missing.Data.Remote.GetDataService;
 import com.alatheer.missing.Data.Remote.Model.Items.Item;
@@ -76,6 +80,7 @@ public class SearchActivity extends AppCompatActivity {
     RecyclerView.LayoutManager itemlayoutManager;
     Context context;
     Resources resources;
+    boolean active = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +97,7 @@ public class SearchActivity extends AppCompatActivity {
         citynamesList = new ArrayList<>();
         getCategories();
         getgoverns();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mhandler,new IntentFilter("com.alatheer.missing_FCM-MESSAGE"));
         spinner_govern_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -129,6 +135,17 @@ public class SearchActivity extends AppCompatActivity {
                 }
             });
         }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        active = false;
+    }
 
     private void updateview(String language) {
         context = LocaleHelper.setLocale(this,language);
@@ -301,4 +318,15 @@ public class SearchActivity extends AppCompatActivity {
         intent.putExtra("date",date);
         startActivity(intent);
     }
+    private BroadcastReceiver mhandler = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String msg = intent.getStringExtra("message");
+            //message.setText(msg);
+            if(active == true){
+                Utilities.showNotificationInADialog(SearchActivity.this,msg);
+            }
+
+        }
+    };
 }

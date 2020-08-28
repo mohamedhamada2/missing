@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "986025675160",
+    "firebase_url": "https://missing-a41e0.firebaseio.com",
+    "project_id": "missing-a41e0",
+    "storage_bucket": "missing-a41e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986025675160:android:fa61e07af5d8a2c571c3ed",
+        "android_client_info": {
+          "package_name": "com.alatheer.missing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "986025675160-tt2db50p7mrdq63drg657g2qranb8tva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alatheer.missing",
+            "certificate_hash": "4485a3234106b1961fa97f11595d1745db1517d1"
+          }
+        },
+        {
+          "client_id": "986025675160-rio2mednhpl7bp3o2veku45s0o8bb32v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg_ijVtpcLuNwWr0qmHJvvLPmBHAyF0dg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "986025675160-rio2mednhpl7bp3o2veku45s0o8bb32v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,7 +17,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:background="@drawable/ic_back"
-            android:onClick="Back"/>
+            android:onClick="Back"
+            android:contentDescription="back"/>
         <TextView
             android:id="@+id/txt_govern"
             android:layout_width="wrap_content"

@@ -17,7 +17,8 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            android:onClick="Back"/>
+            android:onClick="Back"
+            android:contentDescription="back"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +75,8 @@
                                 android:layout_height="24dp"
                                 android:background="@drawable/calender_img"
                                 android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"/>
+                                android:layout_centerVertical="true"
+                                android:contentDescription="calender"/>
 
                             <TextView
                                 android:id="@+id/missing_date"
@@ -101,7 +103,8 @@
                                 android:layout_height="24dp"
                                 android:background="@drawable/ic_location_on"
                                 android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"/>
+                                android:layout_centerVertical="true"
+                                android:contentDescription="location"/>
                             <TextView
                                 android:id="@+id/location_name"
                                 android:layout_width="wrap_content"
@@ -121,7 +124,8 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_alignParentRight="true"
-                        android:scaleType="fitXY">
+                        android:scaleType="fitXY"
+                        android:contentDescription="logo">
                     </ImageView>
                     <RelativeLayout
                         android:id="@+id/linear_add_comment"
@@ -155,7 +159,8 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_send"
-                            android:onClick="add_this_comment" />
+                            android:onClick="add_this_comment"
+                            android:contentDescription="send"/>
                     </RelativeLayout>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

@@ -12,7 +12,7 @@
     <string name="checkNetworkConnection">please check internet Connection</string>
     <string name="validate_name">please add your name</string>
     <string name="validate_email">please add your email</string>
-    <string name="validate_address">please add your address</string>
+    <string name="validate_address">Password is different from Confirm Password</string>
     <string name="validate_password_weak">password is weak</string>
     <string name="validate_password_add">please add your password</string>
     <string name="validate_phone_incorrect">phone is incorrect</string>
@@ -42,4 +42,13 @@
     <string name="sendcode">Send Code</string>
     <string name="code">Code</string>
     <string name="newpassword">new password</string>
+    <string name="legalletter">Legal Letter</string>
+    <string name="legalletter_details">We are a missing site that everyone bears responsibility for what they put in the application</string>
+    <string name="about">about application</string>
+    <string name="about_details" />
+    <string name="confirm_password">confirm password</string>
+    <string name="ok">OK</string>
+    <string name="notification">Notification</string>
+    <string name="contact_message">Please go to the email to activate the account</string>
+    <string name="reset_password_msg">Please go to the email and enter the new password</string>
 </resources>

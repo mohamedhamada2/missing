@@ -5,6 +5,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,12 +35,14 @@ import com.alatheer.missing.Data.Remote.GetDataService;
 import com.alatheer.missing.Data.Remote.Model.Authentication.User;
 import com.alatheer.missing.Data.Remote.Model.Authentication.UserData;
 import com.alatheer.missing.Data.Remote.RetrofitClientInstance;
+import com.alatheer.missing.Helper.LocaleHelper;
 import com.alatheer.missing.Home.Home;
 import com.alatheer.missing.R;
 
 import java.io.File;
 
 import androidx.appcompat.app.AlertDialog;
+import io.paperdb.Paper;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -243,19 +247,28 @@ public class Utilities {
     }
 
     public static void CreateAlertDialog(Context context,String phone,int flag) {
+        Paper.init(context);
+       String  language = Paper.book().read("language");
+        if(language == null){
+            Paper.book().write("language","ar");
+        }
+        Context m_context= LocaleHelper.setLocale(context,language);
+        Resources resources = m_context.getResources();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         final View view = inflater.inflate(R.layout.question_item, null);
-        EditText et_code = view.findViewById(R.id.et_code);
-        //txt_code.setText(code);
+        TextView txt_title = view.findViewById(R.id.txt_title);
+        TextView txt_message = view.findViewById(R.id.txt_message);
         Button btn_ok = view.findViewById(R.id.btn_ok);
+        txt_title.setText(resources.getString(R.string.login_successfully));
+        txt_message.setText(resources.getString(R.string.contact_message));
+        btn_ok.setText(resources.getString(R.string.ok));
         builder.setView(view);
         AlertDialog dialog = builder.create();
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = et_code.getText().toString();
+                /*String code = et_code.getText().toString();
                 MySharedPreference mprefs = MySharedPreference.getInstance();
                 if(!TextUtils.isEmpty(code)){
                     GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -295,12 +308,35 @@ public class Utilities {
                     });
                 }else {
                     et_code.setError("برجاء ادخال الكود الخاص بك");
-                }
-
+                }*/
+                dialog.dismiss();
             }
         });
         dialog.show();
         dialog.getWindow().setLayout(750, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
+    public static void showNotificationInADialog(Context context,String msg) {
+        final android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(context)
+                .setCancelable(false)
+                .create();
+        View view = LayoutInflater.from(context).inflate(R.layout.custom_dialog, null);
+        TextView tv_msg = view.findViewById(R.id.tv_msg);
+        tv_msg.setText(msg);
+        Button doneBtn = view.findViewById(R.id.doneBtn);
+        doneBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.getWindow().getAttributes().windowAnimations = R.style.custom_dialog_animation;
+        dialog.setView(view);
+        dialog.setCanceledOnTouchOutside(false);
+        try {
+            dialog.show();
+        }catch (WindowManager.BadTokenException e){
+            dialog.dismiss();
+        }
     }
 }

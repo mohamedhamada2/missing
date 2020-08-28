@@ -17,7 +17,8 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            android:onClick="Back"/>
+            android:onClick="Back"
+            android:contentDescription="back"/>
         <TextView
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
@@ -41,7 +42,8 @@
                 android:layout_width="230dp"
                 android:layout_height="230dp"
                 android:background="@drawable/logo"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:contentDescription="logo"/>
             <EditText
                 android:id="@+id/et_missing_name"
                 android:layout_width="280dp"
@@ -54,7 +56,8 @@
                 android:textStyle="normal"
                 android:paddingEnd="10dp"
                 android:background="@drawable/regiser_btn_background"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:contentDescription="logo"/>
                 <androidx.cardview.widget.CardView
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
@@ -72,7 +75,8 @@
                                 android:layout_width="280dp"
                                 android:layout_height="120dp"
                                 android:background="@drawable/camera_logo"
-                                android:scaleType="fitXY"/>
+                                android:scaleType="fitXY"
+                                android:contentDescription="image"/>
                             <Button
                                 android:id="@+id/btn_choose_img"
                                 android:layout_width="match_parent"

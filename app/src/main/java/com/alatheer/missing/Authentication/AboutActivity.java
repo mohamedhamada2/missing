@@ -1,8 +1,7 @@
 package com.alatheer.missing.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
@@ -13,42 +12,45 @@ import retrofit2.Response;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alatheer.missing.Countries.CountriesActivity;
 import com.alatheer.missing.Data.Remote.GetDataService;
-import com.alatheer.missing.Data.Remote.Model.Terms.Term;
+import com.alatheer.missing.Data.Remote.Model.About.About;
 import com.alatheer.missing.Data.Remote.RetrofitClientInstance;
 import com.alatheer.missing.Helper.LocaleHelper;
 import com.alatheer.missing.R;
 import com.alatheer.missing.Utilities.Utilities;
+import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
-public class LegalLetterActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
     String language;
     Context context;
     Resources resources;
-    @BindView(R.id.txt_legal_letter)
-    TextView txt_legal_letter;
-    @BindView(R.id.terms_recycler)
-    RecyclerView terms_recycler;
-    RecyclerView.LayoutManager layoutManager;
-    TermsAdapter termsAdapter;
-    boolean active= false;
+    @BindView(R.id.txt_about)
+    TextView txt_about;
+    @BindView(R.id.about_title)
+    TextView txt_title;
+    @BindView(R.id.txt_details)
+    TextView txt_details;
+    @BindView(R.id.about_img)
+    ImageView about_img;
+    boolean active = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_legal_letter);
+        setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
         Paper.init(this);
         language = Paper.book().read("language");
         updateview(language);
-        getterms();
-
+        get_about();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mhandler,new IntentFilter("com.alatheer.missing_FCM-MESSAGE"));
     }
 
     @Override
@@ -63,39 +65,32 @@ public class LegalLetterActivity extends AppCompatActivity {
         active = false;
     }
 
-    private void getterms() {
+    private void get_about() {
         if(Utilities.isNetworkAvailable(this)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<List<Term>> call = getDataService.get_terms();
-            call.enqueue(new Callback<List<Term>>() {
+            Call<About> call = getDataService.get_about();
+            call.enqueue(new Callback<About>() {
                 @Override
-                public void onResponse(Call<List<Term>> call, Response<List<Term>> response) {
+                public void onResponse(Call<About> call, Response<About> response) {
                     if(response.isSuccessful()){
-                        init_recyclerview(response.body());
+                        Picasso.get().load("https://mymissing.online/uploads/images/"+response.body().getLogo()).into(about_img);
+                        txt_title.setText(response.body().getSiteName());
+                        txt_details.setText(response.body().getNotes());
                     }
                 }
 
                 @Override
-                public void onFailure(Call<List<Term>> call, Throwable t) {
+                public void onFailure(Call<About> call, Throwable t) {
 
                 }
             });
         }
     }
 
-    private void init_recyclerview(List<Term> body) {
-        termsAdapter = new TermsAdapter(this,body);
-        layoutManager = new LinearLayoutManager(this);
-        terms_recycler.setAdapter(termsAdapter);
-        terms_recycler.setLayoutManager(layoutManager);
-        terms_recycler.setHasFixedSize(true);
-
-    }
-
     private void updateview(String language) {
         context = LocaleHelper.setLocale(this,language);
         resources = context.getResources();
-        txt_legal_letter.setText(resources.getString(R.string.legalletter));
+        txt_about.setText(resources.getString(R.string.about));
     }
 
     public void Back(View view) {
@@ -106,11 +101,9 @@ public class LegalLetterActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String msg = intent.getStringExtra("message");
             //message.setText(msg);
-
             if(active == true){
-                Utilities.showNotificationInADialog(LegalLetterActivity.this,msg);
+                Utilities.showNotificationInADialog(AboutActivity.this,msg);
             }
-
         }
     };
 }

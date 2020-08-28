@@ -17,7 +17,8 @@
             android:layout_height="24dp"
             android:src="@drawable/address_img"
             android:layout_centerInParent="true"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:contentDescription="cat_img"/>
     </RelativeLayout>
     <TextView
         android:id="@+id/category_name"
