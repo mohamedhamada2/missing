@@ -30,7 +30,6 @@ import com.alatheer.missing.Data.Remote.GetDataService;
 import com.alatheer.missing.Data.Remote.Model.Authentication.User;
 import com.alatheer.missing.Data.Remote.RetrofitClientInstance;
 import com.alatheer.missing.Helper.LocaleHelper;
-import com.alatheer.missing.Home.Home;
 import com.alatheer.missing.R;
 
 public class ForgetPasswordActivity extends AppCompatActivity {

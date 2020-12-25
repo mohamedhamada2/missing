@@ -51,4 +51,8 @@
     <string name="notification">通知</string>
     <string name="contact_message">请转到电子邮件以激活帐户</string>
     <string name="reset_password_msg">请转到电子邮件并输入新密码</string>
+    <string name="find">发现</string>
+    <string name="add_location" >如果需要，请详细添加位置</string>
+    <string name="email_or_phone">邮件或者电话</string>
+    <string name="validate_email_or_phone">please add your email or phone</string>
 </resources>

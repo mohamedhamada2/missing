@@ -48,8 +48,12 @@
     <string name="about_details">Nous sommes une application manquante, une application saoudienne qui vous aide à trouver vos effets personnels de l\'argent et des personnes, de l\'or, des montres et des mobiles</string>
     <string name="confirm_password">Confirmez le mot de passe</string>
     <string name="ok">D\'accord</string>
-    <string name="notification">Notification</string>
+    <string name="notification">Notifications</string>
     <string name="contact_message">Veuillez accéder à l\'e-mail pour activer le compte</string>
     <string name="reset_password_msg">Veuillez aller à l\'email et entrer le nouveau mot de passe</string>
+    <string name="find">a trouvé</string>
+    <string name="add_location">Ajoutez un emplacement en détail si vous le souhaitez</string>
+    <string name="email_or_phone">email ou téléphone</string>
+    <string name="validate_email_or_phone">s\'il vous plaît ajouter votre email ou téléphone</string>
 
 </resources>

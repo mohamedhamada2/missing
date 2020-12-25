@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
     List<CityModel>citylist;
     RecyclerView city_recycler;
     Button btn_send,btn_cancel;
-
+    int checkedPosition = -1;
     public CountriesAdapter(List<CountryModel> countryModelList, Context context) {
         this.countryModelList = countryModelList;
         this.context = context;
@@ -54,7 +55,11 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
      holder.checkBox.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
-             CreateAlertDialog(countryModelList.get(position).getId());
+             if (checkedPosition != holder.getAdapterPosition()) {
+                 notifyItemChanged(checkedPosition);
+                 checkedPosition = holder.getAdapterPosition();
+                 CreateAlertDialog(countryModelList.get(position).getId());
+             }
          }
      });
 
@@ -136,6 +141,15 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         }
 
         public void setData(CountryModel countryModel) {
+            if (checkedPosition == -1) {
+                checkBox.setChecked(false);
+            } else {
+                if (checkedPosition == getAdapterPosition()) {
+                    checkBox.setChecked(true);
+                } else {
+                    checkBox.setChecked(false);
+                }
+            }
             txt_country_name.setText(countryModel.getTitle());
         }
     }

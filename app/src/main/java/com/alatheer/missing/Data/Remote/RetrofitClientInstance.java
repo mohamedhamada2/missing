@@ -1,11 +1,13 @@
 package com.alatheer.missing.Data.Remote;
 
+import com.alatheer.missing.Data.Remote.Utilities.Constants;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.alatheer.missing.Utilities.Constants.BASE_URL;
+import static com.alatheer.missing.Data.Remote.Utilities.Constants.BASE_URL;
 
 
 public class RetrofitClientInstance {

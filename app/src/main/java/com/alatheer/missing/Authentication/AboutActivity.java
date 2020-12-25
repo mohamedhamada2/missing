@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,7 +77,8 @@ public class AboutActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         Picasso.get().load("https://mymissing.online/uploads/images/"+response.body().getLogo()).into(about_img);
                         txt_title.setText(response.body().getSiteName());
-                        txt_details.setText(response.body().getNotes());
+                        txt_details.setText(Html.fromHtml(response.body().getNotes()));
+                        txt_details.setMovementMethod(LinkMovementMethod.getInstance());
                     }
                 }
 

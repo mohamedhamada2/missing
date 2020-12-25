@@ -58,6 +58,33 @@ import com.google.gson.annotations.SerializedName;
         @SerializedName("govern_title")
         @Expose
         private String governTitle;
+        @SerializedName("adress")
+        @Expose
+        private String adress;
+
+        public Object get_long() {
+            return _long;
+        }
+
+        public void set_long(Object _long) {
+            this._long = _long;
+        }
+
+        public String getuName() {
+            return uName;
+        }
+
+        public void setuName(String uName) {
+            this.uName = uName;
+        }
+
+        public String getAdress() {
+            return adress;
+        }
+
+        public void setAdress(String adress) {
+            this.adress = adress;
+        }
 
         public Integer getId() {
             return id;

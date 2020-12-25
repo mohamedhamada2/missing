@@ -268,47 +268,7 @@ public class Utilities {
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String code = et_code.getText().toString();
-                MySharedPreference mprefs = MySharedPreference.getInstance();
-                if(!TextUtils.isEmpty(code)){
-                    GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-                    Call <User> call = getDataService.verify_code(phone,code);
-                    call.enqueue(new Callback<User>() {
-                        @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            if(response.isSuccessful()){
-                                Log.e("success100","1");
-                                if(response.body().getSuccess() == 1 && response.body().getActivate()==1){
-                                    Log.e("success1","1");
-                                    if(flag == 1){
-                                        RegisterationActivity registerationActivity = (RegisterationActivity) context;
-                                        context.startActivity(new Intent(context, LoginActivity.class));
-                                        registerationActivity.finish();
-                                        mprefs.Create_Update_UserData(context,response.body());
-                                    }else if(flag ==2){
-                                        LoginActivity loginActivity = (LoginActivity) context;
-                                        context.startActivity(new Intent(context, Home.class));
-                                        loginActivity.finish();
-                                    }
-                                    Toast.makeText(context, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
-                                    dialog.dismiss();
-                                }else{
-                                    et_code.setError("الكود غير صحيح");
-                                    //dialog.dismiss();
-                                }
-                            }else {
-                                et_code.setError("الكود غير صحيح");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                              Log.e("failure",t.getMessage());
-                        }
-                    });
-                }else {
-                    et_code.setError("برجاء ادخال الكود الخاص بك");
-                }*/
+                context.startActivity(new Intent(context,LoginActivity.class));
                 dialog.dismiss();
             }
         });

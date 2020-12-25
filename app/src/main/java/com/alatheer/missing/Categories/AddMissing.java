@@ -48,6 +48,7 @@ public class AddMissing extends AppCompatActivity {
     @BindView(R.id.txt_title)
     TextView txt_title;
     static boolean active = false;
+    public static Activity add_missing_activity;
     private final String read_permission = Manifest.permission.READ_EXTERNAL_STORAGE;
     int IMG = 1;
     Uri filepath;
@@ -64,6 +65,7 @@ public class AddMissing extends AppCompatActivity {
         Paper.init(this);
          language = Paper.book().read("language");
          context = LocaleHelper.setLocale(this,language);
+         add_missing_activity = this;
          resources = context.getResources();
         updateview(language);
         getDataIntent();

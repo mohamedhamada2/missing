@@ -1,9 +1,12 @@
 package com.alatheer.missing.Data.Remote.Model.About;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class About {
+public class About implements Parcelable{
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -25,6 +28,27 @@ public class About {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    protected About(Parcel in) {
+        id = in.readInt();
+        logo = in.readString();
+        address = in.readString();
+        siteName = in.readString();
+        notes = in.readString();
+        createdAt = in.readString();
+        updatedAt = in.readString();
+    }
+
+    public static final Parcelable.Creator<About> CREATOR = new Parcelable.Creator<About>() {
+        @Override
+        public About createFromParcel(Parcel in) {
+            return new About(in);
+        }
+
+        @Override
+        public About[] newArray(int size) {
+            return new About [size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -80,5 +104,20 @@ public class About {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(logo);
+        dest.writeString(address);
+        dest.writeString(siteName);
+        dest.writeString(notes);
+        dest.writeString(createdAt);
+        dest.writeString(updatedAt);
     }
 }

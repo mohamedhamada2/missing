@@ -51,7 +51,7 @@ public class CategoryAdapter2 extends RecyclerView.Adapter<CategoryAdapter2.Cate
                 selectedItem = position;
                 notifyItemChanged(previousItem);
                 notifyItemChanged(position);
-               searchActivity.sendData(categoryList.get(position).getId());
+                searchActivity.sendData(categoryList.get(position).getId());
 
 
             }

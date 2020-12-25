@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -50,12 +51,14 @@ public class CategoryActivity extends AppCompatActivity {
     int category_id;
     String language;
     boolean active;
+    public static Activity category_activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
         Paper.init(this);
+        category_activity = this;
         language = Paper.book().read("language");
         updateview(language);
         getCategory();

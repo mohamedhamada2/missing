@@ -24,12 +24,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alatheer.missing.Categories.AddMissing;
+import com.alatheer.missing.Categories.Category;
+import com.alatheer.missing.Categories.CategoryActivity;
 import com.alatheer.missing.Data.Local.MySharedPreference;
 import com.alatheer.missing.Data.Remote.GetDataService;
 import com.alatheer.missing.Data.Remote.Model.Success.Success;
@@ -51,6 +54,8 @@ public class CountriesActivity extends AppCompatActivity {
     Button btn_add;
     @BindView(R.id.txt_govern)
     TextView txt_govern;
+    @BindView(R.id.et_add_location)
+    EditText et_add_location;
     List<CountryModel>countryModelList;
     List<CityModel>cityModelList1,cityModelList2,cityModelList3;
     CountriesAdapter countriesAdapter;
@@ -64,6 +69,7 @@ public class CountriesActivity extends AppCompatActivity {
     Context context;
     Resources resources;
     boolean active = false;
+    String add_location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,14 +158,15 @@ public class CountriesActivity extends AppCompatActivity {
     }
 
     private void Validation() {
+        add_location = et_add_location.getText().toString();
         if(govern_id != 0 && city_id != 0 && imagepath != null && missing_name != null){
-            AddItem(user_id,type,missing_name,category_id,govern_id,city_id,imagepath);
+            AddItem(user_id,type,missing_name,category_id,govern_id,city_id,add_location,imagepath);
             Log.e("user_id",user_id+"");
             Log.e("user_phone",mySharedPreference.Get_UserData(this).getPhone());
         }
     }
 
-    private void AddItem(int user_id, String type, String missing_name, int category_id, int govern_id, int city_id, Uri imagepath) {
+    private void AddItem(int user_id, String type, String missing_name, int category_id, int govern_id, int city_id, String add_location, Uri imagepath) {
         progressBar.setVisibility(View.VISIBLE);
         RequestBody rb_user_id = Utilities.getRequestBodyText(user_id+"");
         RequestBody rb_type = Utilities.getRequestBodyText(type);
@@ -167,10 +174,11 @@ public class CountriesActivity extends AppCompatActivity {
         RequestBody rb_missing_name = Utilities.getRequestBodyText(missing_name);
         RequestBody rb_govern_id = Utilities.getRequestBodyText(govern_id+"");
         RequestBody rb_city_id= Utilities.getRequestBodyText(city_id+"");
+        RequestBody rb_add_location= Utilities.getRequestBodyText(add_location+"");
         MultipartBody.Part img = Utilities.getMultiPart(this, imagepath, "img");
         if(Utilities.isNetworkAvailable(this)){
             GetDataService getDataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-            Call<Success> call = getDataService.add_item(rb_user_id,rb_type,rb_missing_name,rb_category_id,rb_govern_id,rb_city_id,img);
+            Call<Success> call = getDataService.add_item(rb_user_id,rb_type,rb_missing_name,rb_category_id,rb_govern_id,rb_city_id,rb_add_location,img);
             call.enqueue(new Callback<Success>() {
                 @Override
                 public void onResponse(Call<Success> call, Response<Success> response) {
@@ -178,6 +186,9 @@ public class CountriesActivity extends AppCompatActivity {
                         if(response.body().getSuccess()==1){
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(CountriesActivity.this, "تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
+                            finish();
+                            AddMissing.add_missing_activity.finish();
+                            CategoryActivity.category_activity.finish();
                         }
                     }
                 }

@@ -1,17 +1,5 @@
 package com.alatheer.missing.Home;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import io.paperdb.Paper;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +27,18 @@ import com.alatheer.missing.Helper.LocaleHelper;
 import com.alatheer.missing.R;
 import com.alatheer.missing.Search.SearchActivity;
 import com.alatheer.missing.Utilities.Utilities;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import io.paperdb.Paper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity {
     @BindView(R.id.menu_imgbtn)

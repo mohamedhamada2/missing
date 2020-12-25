@@ -51,4 +51,8 @@
     <string name="notification">الاشعارات</string>
     <string name="contact_message">برجاء الذهاب للبريد الالكتروني لتفعيل الحساب</string>
     <string name="reset_password_msg">برجاء الذهاب الي البريد الالكتروني و ادخال كلمة المرور الجديدة</string>
+    <string name="find">وجد :</string>
+    <string name="add_location">اضافة مكان بالتفصيل اذا اردت</string>
+    <string name="email_or_phone">البريد الالكتروني او التليفون</string>
+    <string name="validate_email_or_phone">برجاء ادخال البريد الالكتروني او التليفون</string>
 </resources>

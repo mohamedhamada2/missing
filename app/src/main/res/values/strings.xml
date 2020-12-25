@@ -47,7 +47,11 @@
     <string name="about_details">We are a missing application, a Saudi application that helps you find your personal belongings from money and people, gold, watches and mobiles</string>
     <string name="confirm_password">confirm password</string>
     <string name="ok">OK</string>
-    <string name="notification">Notification</string>
+    <string name="notification">Notifications</string>
     <string name="contact_message">Please go to the email to activate the account</string>
     <string name="reset_password_msg">Please go to the email and enter the new password</string>
+    <string name="find">found :</string>
+    <string name="add_location" >Add a location in detail if you want</string>
+    <string name="email_or_phone">email or phone</string>
+    <string name="validate_email_or_phone">please add your email or phone</string>
 </resources>

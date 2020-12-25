@@ -10,6 +10,7 @@ import com.alatheer.missing.Data.Remote.Model.Comment.Comment;
 import com.alatheer.missing.Data.Remote.Model.Items.Item;
 import com.alatheer.missing.Data.Remote.Model.Authentication.User;
 import com.alatheer.missing.Data.Remote.Model.*;
+import com.alatheer.missing.Data.Remote.Model.Notification.Notification;
 import com.alatheer.missing.Data.Remote.Model.RemoveToken.RemoveToken;
 import com.alatheer.missing.Data.Remote.Model.Success.Success;
 import com.alatheer.missing.Data.Remote.Model.Terms.Term;
@@ -57,6 +58,7 @@ public interface GetDataService {
                           @Part("category_id_fk")RequestBody category_id_fk,
                           @Part("govern_id_fk")RequestBody govern_id_fk,
                           @Part("city_id_fk")RequestBody city_id_fk,
+                          @Part("adress")RequestBody adress,
                           @Part MultipartBody.Part img);
 
     @POST("api/search_by")
@@ -87,4 +89,6 @@ public interface GetDataService {
     @FormUrlEncoded
     @POST("api/removeToken")
     Call<RemoveToken>remove_token(@Field("id")String id);
+    @GET("api/myNotifications")
+    Call<Notification> get_notifications (@Query("id")int user_id, @Query("page")int page);
 }

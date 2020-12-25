@@ -18,8 +18,10 @@ import butterknife.ButterKnife;
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
     Context context;
-    List<CityModel>cityModelList;
+    List<CityModel> cityModelList;
     CountriesActivity countriesActivity;
+    int checkedPosition = -1;
+
     public CityAdapter(Context context, List<CityModel> cityModelList) {
         this.context = context;
         this.cityModelList = cityModelList;
@@ -29,7 +31,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
     @NonNull
     @Override
     public CityHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.country_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.country_item, parent, false);
         return new CityAdapter.CityHolder(view);
     }
 
@@ -39,7 +41,11 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               countriesActivity.sendcityid(cityModelList.get(position).getId());
+                if (checkedPosition != holder.getAdapterPosition()) {
+                    notifyItemChanged(checkedPosition);
+                    checkedPosition = holder.getAdapterPosition();
+                }
+                countriesActivity.sendcityid(cityModelList.get(position).getId());
             }
         });
     }
@@ -60,6 +66,15 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
         }
 
         public void setData(CityModel cityModel) {
+            if (checkedPosition == -1) {
+                checkBox.setChecked(false);
+            } else {
+                if (checkedPosition == getAdapterPosition()) {
+                    checkBox.setChecked(true);
+                } else {
+                    checkBox.setChecked(false);
+                }
+            }
             txt_country_name.setText(cityModel.getTitle());
         }
     }

@@ -48,7 +48,11 @@
     <string name="about_details">ہم ایک لاپتہ ایپلی کیشن ، ایک سعودی ایپلی کیشن ہیں جو آپ کو پیسوں اور لوگوں ، سونے ، گھڑیاں اور موبائلوں سے اپنا ذاتی سامان تلاش کرنے میں مدد فراہم کرتی ہے</string>
     <string name="confirm_password">پاس ورڈ کی تصدیق کریں</string>
     <string name="ok">ٹھیک ہے</string>
-    <string name="notification">اطلاع</string>
+    <string name="notification">اطلاعات</string>
     <string name="contact_message">براہ کرم اکاؤنٹ کو چالو کرنے کے لئے ای میل پر جائیں</string>
     <string name="reset_password_msg">براہ کرم ای میل پر جائیں اور نیا پاس ورڈ درج کریں</string>
+    <string name="find">ملا</string>
+    <string name="add_location">اگر آپ چاہیں تو تفصیل کے ساتھ ایک جگہ شامل کریں</string>
+    <string name="email_or_phone">ای میل یا فون</string>
+    <string name="validate_email_or_phone">براہ کرم اپنا ای میل یا فون شامل کریں</string>
 </resources>

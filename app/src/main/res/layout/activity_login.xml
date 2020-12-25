@@ -60,7 +60,7 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:drawableRight="@drawable/ic_email"
                 android:paddingBottom="15dp"
-                android:hint="@string/phone"
+                android:hint="@string/email"
                 android:textColorHint="@color/colorPrimary"
                 android:textSize="16sp"
                 android:gravity="center_horizontal"

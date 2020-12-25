@@ -156,5 +156,4 @@ public class User {
     public void setSuccess(Integer success) {
         this.success = success;
     }
-
 }

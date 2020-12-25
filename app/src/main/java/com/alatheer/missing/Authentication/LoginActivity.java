@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements PopupMenu.OnMenu
     private void updateview(String language) {
         context = LocaleHelper.setLocale(this,language);
         resources = context.getResources();
-        et_phone.setHint(resources.getString(R.string.phone));
+        et_phone.setHint(resources.getString(R.string.email_or_phone));
         et_password.setHint(resources.getString(R.string.password));
         txt_login.setText(resources.getString(R.string.login));
         btn_login.setText(resources.getString(R.string.login));
@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements PopupMenu.OnMenu
             LoginUser(phone, password);
         } else {
             if (TextUtils.isEmpty(phone)) {
-                et_phone.setError(resources.getString(R.string.validate_phone_add));
+                et_phone.setError(resources.getString(R.string.validate_email_or_phone));
             } else {
                 et_phone.setError(null);
             }

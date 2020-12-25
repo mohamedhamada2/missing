@@ -19,6 +19,17 @@ public class CountryModel {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @SerializedName("isselected")
+    @Expose
+    private Boolean isSelected;
+
+    public Boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
+    }
 
     public Integer getId() {
         return id;
