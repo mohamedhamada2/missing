@@ -125,14 +125,14 @@ public class RegisterationActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         Log.e("ssss","mmmmm");
                         if(response.body().getSuccess()==1 && response.body().getActivate()== 0){
-                            Utilities.CreateAlertDialog(RegisterationActivity.this,response.body().getPhone(),1);
-                            /*mprefs.Create_Update_UserData(RegisterationActivity.this, response.body());
+                            //Utilities.CreateAlertDialog(RegisterationActivity.this,response.body().getPhone(),1);
+                            mprefs.Create_Update_UserData(RegisterationActivity.this, response.body());
                              startActivity(new Intent(RegisterationActivity.this, Home.class));
                             finish();
-                            Toast.makeText(RegisterationActivity.this, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();*/
+                            Toast.makeText(RegisterationActivity.this, "تمت تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show();
                         }else if(response.body().getSuccess()== 0) {
-                            Log.e("hello","0000");
-                            Toast.makeText(RegisterationActivity.this, "لقد تم دخولك مسبقا", Toast.LENGTH_SHORT).show();
+                            //Log.e("hello","0000");
+                            Toast.makeText(RegisterationActivity.this, "لقد تم تسجيلك مسبقا", Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Log.e("response",response.message()+"");
